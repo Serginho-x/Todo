@@ -1,0 +1,23 @@
+.ToDoList-Item {
+    width: 600px;
+    height: 40px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid #00b5ad;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.ToDoList-Buttons {
+    margin-left: auto;
+}
+
+.ToDoList-Buttons i:hover{
+   color:#00b5ad;
+}
+.ToDoList-Checkbox{
+    margin: auto 5px;
+    display: flex;
+    align-items: center;
+}

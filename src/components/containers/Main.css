@@ -1,0 +1,15 @@
+.input {
+    width: 600px
+}
+
+.App{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.Title{
+    font: 40pt sans-serif;
+}

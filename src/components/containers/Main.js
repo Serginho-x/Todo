@@ -1,71 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import {AddTodo} from '../../actions/TodosActions'
-import Todo from '../presentationals/Todo'
-
+import {AddTodo, GetAllTodos} from '../../actions/TodosActions'
+import TodoList from '../presentationals/TodoList'
+import { store } from '../../store/configureStore'
+import './Main.css'
 
 class Main extends React.Component {  
-    renderTodos () {
-        const {todos} = this.props;
-        console.log(todos.todoList);
-        return todos.todoList.map((todo) => {
-            return Object.values(todo).map((items, index) => {       
-               console.log(todo.text) 
-            // return  <Todo key={todo.id}/>  
-        })
-    })}
-
-
-
-    // return users.map((item) => {
-    //     return Object.values(item).map((items, index) => {       
-    //       const user = Object.values(items, index)  
-               
-    //       return (
-    //         <div className="item" onClick={ () => this.props.dispatchInfo(user, index) }>
-    //           <img className="ui avatar image" src={user[0].avatar} />
-    //           <div className="content"  >
-    //             <a className="header">{user[0].firstName} {user[0].lastName}</a>
-    //             <div className="description">{user[1].title}</div>
-    //           </div>
-    //         </div>          
-    //       )
-    //         }
+    
+componentDidMount() {
+    store.dispatch(GetAllTodos());
+}
 
 render(){
-    const {AddTodo} = this.props
+    const {AddTodo, todos} = this.props
     let input;
     return(
-        <div>
-            <div className="App">
-            Todo List           
-            </div>
+        <div className="App">
+           <div> 
+               <div className="Title">
+                    Todo List
+               </div>
             <div>
-                <form className="ui fluid form"  onSubmit={e => {
-                                                
+                <form className="ui fluid form"  onSubmit={e => {                                                
                         AddTodo(input.value)
                         input.value = ''
                     }}>
-                    <div className="field">
+                    <div className="field input">
                         <input type="text" placeholder="New TODO"  ref={node => input = node}/>            
                     </div>
                 
-                    <button className="ui teal button" type="submit" >
+                    <button className="ui teal button" >
                         Add
                     </button>
-                    <button className="ui button">
+                    <button className="ui button" type="reset">
                         Clear
                     </button>  
                 </form>
             </div>
-            {this.renderTodos()}
-           
-      </div>
+            <div className="ui divider"></div>
+            <TodoList  todos={todos}/>
+            </div>
+        </div>
       
     )
    }
 } 
-
 
 const mapStateToProps = store => {
     return {

@@ -1,13 +1,18 @@
-let nextTodoId = 0
+import axios from 'axios';
+let nextTodoId=0
+
 export const AddTodo = todo => {
+  console.log(todo);
     return {
         type: 'ADD_TODO',
-        id: nextTodoId++,
-        text: todo
+        payload: {
+          id: nextTodoId++,
+          text: todo
+        }
     }
   }
 
-  export const DeleteTodo = id => {
+export const DeleteTodo = id => {
     return {
       type: 'DELETE_TODO',
       payload: {
@@ -15,3 +20,21 @@ export const AddTodo = todo => {
       }
     }
   }
+
+export const GetAllTodosSuccess = data => {
+  return {
+    type: 'GET_ALL_TODOS_SUCCESS',
+    payload: {
+      data
+    }
+  }
+}
+
+export const GetAllTodos = () => { 
+  return (dispatch) => {
+    return axios.get(`http://localhost:4000/todolist/`)
+      .then(response => {
+            dispatch(GetAllTodosSuccess(response.data))
+          })
+        }       
+  };  

@@ -1,23 +1,28 @@
-
 const initialState = {
-    todoList: [{id: 15, text: '3'}, {id: 25, text: '4'}, {id:35, text: '5'}],
+    todoList: [],
   }
   
-export default function Todos(state=initialState, action){
+export default function Todos(state=initialState, action){    
     switch(action.type){
-        case 'ADD_TODO':
-            let payload = action.todo
+        case 'GET_ALL_TODOS_SUCCESS':
+        let payload = action.payload.data;
+            return {
+                ...state,
+                todoList:  Object.values(payload)
+            }
+        case 'ADD_TODO':    
+            payload = action.payload;        
             console.log('reducer', payload)
-            return Object.assign({}, state, {
-                todoList:        
-                {
-                  id: payload.id,
-                  text: payload.text
-                }
-            });
+            return { 
+                ...state,
+                todoList: []
+            };  
         case 'DELETE_TODO':
             return(console.log('delete'));
         default:
             return state
     }
 }
+
+
+    
