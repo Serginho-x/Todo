@@ -11,6 +11,8 @@
 
 .ToDoList-Buttons {
     margin-left: auto;
+    max-width: 60px;
+    min-width: 60px;
 }
 
 .ToDoList-Buttons i:hover{

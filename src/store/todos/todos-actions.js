@@ -12,6 +12,16 @@ export const addTodo = todo => {
     }
   }
 
+const EDIT_TODO = 'EDIT_TODO'
+export const editTodo = (id, text) => {
+  return {
+    type: EDIT_TODO,
+    payload: {
+      id,
+      text
+    }
+  }
+}
 const DELETE_TODO = 'DELETE_TODO'
 export const deleteTodo = id => {
     return {
@@ -45,6 +55,34 @@ export const toggleSwitch = id => {
     type: TOGGLE_SWITCH,
     payload: {
       id
+    }
+  }
+}
+
+const SEARCH_TODOS_SUCCESS = 'SEARCH_TODOS_SUCCESS'
+export const searchTodosSuccess = todoList => {
+  return {
+    type: SEARCH_TODOS_SUCCESS,
+    payload: {
+      todoList
+    }
+  }
+}
+
+export const searchTodo = text => {
+  return async (dispatch) => {
+    const response = await axios.get(`http://localhost:4000/todolist/`);
+    const todoList = response.data.filter((todo) => todo.text.toLowerCase().includes(text.toLowerCase()))
+      dispatch(searchTodosSuccess (todoList));
+  }
+}
+
+const FILTER_TODO = 'FILTER_TODO'
+export const filterTodos = filterType => {
+  return {
+    type: FILTER_TODO,
+    payload: {
+      filterType
     }
   }
 }

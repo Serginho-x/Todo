@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { addTodo, fetchAllTodos, toggleSwitch } from '../store/todos/todos-actions'
-import TodoList from './TodoList'
 import PropTypes from 'prop-types'
+
+import { addTodo, editTodo, deleteTodo, fetchAllTodos, toggleSwitch, searchTodo } from '../store/todos/todos-actions'
+import TodoList from './TodoList'
+import { getVisibleTodos } from '../store/todos/selectors';
+
 import '../styles/Main.css'
 
 class Main extends React.Component {  
@@ -12,7 +15,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      isSearch: false
     };    
   }
 
@@ -50,8 +54,7 @@ class Main extends React.Component {
                       <div className="field input">
                           <input type="text" placeholder="New TODO"
                           value={this.state.value} onChange={this.handleInputChange}/>            
-                      </div>
-                  
+                      </div>                  
                       <button className="ui teal button">
                           Add
                       </button>
@@ -61,10 +64,26 @@ class Main extends React.Component {
                   </form>
               </div>
               <div className="ui divider"></div>
-                  <TodoList 
-                   todos={todos}
-                   toggleSwitch={this.props.toggleSwitch}
-                  />
+              <div className="search_panel">
+                <div className="ui buttons">
+                  <button className="ui button">All</button>
+                  <button className="ui button">Done</button>
+                  <button className="ui button">Undone</button>
+                </div>
+                <button className="ui teal button" onClick={() => this.setState({isSearch: !this.state.isSearch})}>Search</button>              
+              </div>
+              {this.state.isSearch && 
+                <div className="ui icon input">
+                  <input type="text" placeholder="Search todos..." onChange={(e) => this.props.searchTodo(e.target.value)}/>
+                  <i className="search icon"></i>
+                </div>
+              }
+              <TodoList 
+                todos={todos}
+                toggleSwitch={this.props.toggleSwitch}
+                deleteTodo={this.props.deleteTodo}
+                editTodo={this.props.editTodo}
+              />
               </div>
           </div>      
       )
@@ -73,14 +92,17 @@ class Main extends React.Component {
 
 const mapStateToProps = store => {
     return {
-      todos: store.todos     
+      todos: store.todos    
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
     addTodo: (item) => dispatch(addTodo(item)),
+    deleteTodo: (id) => dispatch(deleteTodo(id)),   
+    editTodo: (id, item) => dispatch(editTodo(id, item)),
     fetchAllTodos: (item) => dispatch(fetchAllTodos(item)),
-    toggleSwitch: (item) => dispatch(toggleSwitch(item))
+    toggleSwitch: (item) => dispatch(toggleSwitch(item)),
+    searchTodo: (id) => dispatch(searchTodo(id)),
   }
 }
 

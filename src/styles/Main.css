@@ -13,3 +13,9 @@
 .Title{
     font: 40pt sans-serif;
 }
+
+.search_panel{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
