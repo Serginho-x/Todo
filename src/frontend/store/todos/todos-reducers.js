@@ -1,6 +1,7 @@
 const initialState = {
     todoList: [],
-  }
+    filter: 'All'
+}
   
 export default function Todos(state=initialState, action){    
     switch(action.type){
@@ -44,6 +45,12 @@ export default function Todos(state=initialState, action){
             return {
               ...state,
               todoList:  action.payload.todoList
+            }      
+        }
+        case 'FILTER_TODO': {
+            return {
+              ...state,
+              filter:  action.payload.filter
             }      
         }
         default:

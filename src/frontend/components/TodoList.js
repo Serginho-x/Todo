@@ -12,7 +12,7 @@ class TodoList extends React.Component {
 
   render(){
     const {todos} = this.props;
-    const todoList = todos.todoList.map((todo) => ( 
+    const todoList = todos.map((todo) => ( 
     <div className='ToDoList-Item' style={{borderColor: todo.done ? 'red' : ''}}  key={todo.id}>         
       <div className="ToDoList-Checkbox" >
         <div className="ui fitted checkbox">

@@ -81,8 +81,7 @@ const FILTER_TODO = 'FILTER_TODO'
 export const filterTodos = filterType => {
   return {
     type: FILTER_TODO,
-    payload: {
-      filterType
-    }
+    payload: filterType
+    
   }
 }

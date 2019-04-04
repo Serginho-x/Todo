@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { addTodo, editTodo, deleteTodo, fetchAllTodos, toggleSwitch, searchTodo } from '../store/todos/todos-actions'
+import { addTodo, editTodo, deleteTodo, fetchAllTodos, toggleSwitch, searchTodo, filterTodos } from '../store/todos/todos-actions'
 import TodoList from './TodoList'
 import { getVisibleTodos } from '../store/todos/selectors';
 
@@ -10,13 +10,13 @@ import '../styles/Main.css'
 
 class Main extends React.Component {  
   static propTypes = {
-    todos: PropTypes.object
+    todos: PropTypes.array
   }
   constructor(props) {
     super(props);
     this.state = {
       value: '',
-      isSearch: false
+      isSearch: false,
     };    
   }
 
@@ -30,6 +30,7 @@ class Main extends React.Component {
     this.setState({ value: value })
   }
 
+  //Submit 'Add Todo' Form
   handleSubmit = (event) => {
     const addTodo = this.props.addTodo;
     event.preventDefault();                                                  
@@ -37,12 +38,13 @@ class Main extends React.Component {
     this.setState({ value: '' })
   }
 
+  // Reset 'Add Todo' Input
   handleReset = () => {
     this.setState({ value: '' })
   }
 
   render(){
-      const {todos} = this.props
+      const {todos, filterTodos} = this.props
       return(      
           <div className="App">
             <div> 
@@ -66,9 +68,9 @@ class Main extends React.Component {
               <div className="ui divider"></div>
               <div className="search_panel">
                 <div className="ui buttons">
-                  <button className="ui button">All</button>
-                  <button className="ui button">Done</button>
-                  <button className="ui button">Undone</button>
+                  <button className="ui button" onClick={() => filterTodos({filter: "All"})}>All</button>
+                  <button className="ui button" onClick={() => filterTodos({filter: "Done"})}>Done</button>
+                  <button className="ui button" onClick={() => filterTodos({filter: "Undone"})}>Undone</button>
                 </div>
                 <button className="ui teal button" onClick={() => this.setState({isSearch: !this.state.isSearch})}>Search</button>              
               </div>
@@ -92,7 +94,7 @@ class Main extends React.Component {
 
 const mapStateToProps = store => {
     return {
-      todos: store.todos    
+      todos: getVisibleTodos(store.todos, store.filter)    
   }
 }
 const mapDispatchToProps = dispatch => {
@@ -103,6 +105,7 @@ const mapDispatchToProps = dispatch => {
     fetchAllTodos: (item) => dispatch(fetchAllTodos(item)),
     toggleSwitch: (item) => dispatch(toggleSwitch(item)),
     searchTodo: (id) => dispatch(searchTodo(id)),
+    filterTodos: (item) => dispatch(filterTodos(item))
   }
 }
 
