@@ -5,7 +5,7 @@ import '../styles/TodoList.css';
 class EditTodo extends React.Component {
   static propTypes = {
       text: PropTypes.string,
-      id: PropTypes.number,
+      id: PropTypes.string,
       done: PropTypes.bool
     }
 

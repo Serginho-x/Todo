@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 
-mongoose.connect('mongodb://localhost:27017/todos', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/todolist', { useNewUrlParser: true });
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/api', require('./todo-api'));

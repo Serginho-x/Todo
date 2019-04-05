@@ -6,6 +6,7 @@ const initialState = {
 export default function Todos(state=initialState, action){    
     switch(action.type){
         case 'FETCH_TODOS_SUCCESS': {
+            console.log(Object.values(action.payload.data))
             return {
                 ...state,
                 todoList:  Object.values(action.payload.data)
@@ -28,7 +29,8 @@ export default function Todos(state=initialState, action){
                 todoList
             }}
         case 'DELETE_TODO': {
-            const todoList = state.todoList.filter(todo => todo.id !== action.payload.id )
+            console.log('fd')
+            const todoList = state.todoList.filter(todo => todo._id !== action.payload._id )
             return {
                 ...state,
                 todoList

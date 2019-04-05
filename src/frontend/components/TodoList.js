@@ -6,14 +6,14 @@ import '../styles/TodoList.css';
 class TodoList extends React.Component { 
   static propTypes = {
     text: PropTypes.string,
-    id: PropTypes.number,
+    id: PropTypes.string,
     done: PropTypes.bool
   }
 
   render(){
     const {todos} = this.props;
     const todoList = todos.map((todo) => ( 
-    <div className='ToDoList-Item' style={{borderColor: todo.done ? 'red' : ''}}  key={todo.id}>         
+    <div className='ToDoList-Item' style={{borderColor: todo.done ? 'red' : ''}}  key={todo._id}>         
       <div className="ToDoList-Checkbox" >
         <div className="ui fitted checkbox">
           <input type="checkbox" checked={todo.done} onChange={() => this.props.toggleSwitch(todo.id)} />
@@ -21,7 +21,7 @@ class TodoList extends React.Component {
         </div>
       </div>       
       <EditTodo 
-        id={todo.id}
+        id={todo._id}
         text={todo.text}
         done={todo.done}
         editTodo={this.props.editTodo}
