@@ -29,8 +29,8 @@ router.post('/todolist', function(req,res, next){
 
 router.put('/todolist/:id', function(req, res, next){
   console.log("update");
-  Todo.findByIdAndUpdate({_id: req.params._id}, req.body).then(function(){
-    Todo.findOne({_id: req.params._id}).then(function(todo){
+  Todo.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
+    Todo.findOne({_id: req.params.id}).then(function(todo){
             res.send(todo);
         });
     }).catch(next);

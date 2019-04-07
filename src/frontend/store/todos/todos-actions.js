@@ -1,49 +1,13 @@
 import axios from 'axios';
-let nextTodoId=0
+
 const todolistUrl = 'http://localhost:4000/api/todolist';  // URL to todolist
 
-const ADD_TODO = 'ADD_TODO'
-export const addTodo = todo => {
-    return {
-        type: ADD_TODO,
-        payload: {
-          id: nextTodoId++,
-          text: todo
-        }
-    }
-  }
-
-const EDIT_TODO = 'EDIT_TODO'
-export const editTodo = (id, text) => {
-  return {
-    type: EDIT_TODO,
-    payload: {
-      id,
-      text
-    }
-  }
-}
-const DELETE_TODO = 'DELETE_TODO'
-// export const deleteTodos = id => {
-//     return {
-//       type: DELETE_TODO,
-//       payload: {
-//         id
-//       }
-//     }
-//   }
-
-export const deleteTodo = (id) => { 
-  return async () => {
-    const response = await axios.delete(`${todolistUrl}/${id}`);
-    const _id=response.data._id
-    return { 
-      type: DELETE_TODO,
-      payload: { 
-        _id 
-      }}
-  }
-}
+export const fetchAllTodos = () => { 
+  return async (dispatch) => {
+    const response = await axios.get(`${todolistUrl}`);
+    dispatch(fetchTodosSuccess(response.data));
+        }       
+  };
 
 const FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS'
 export const fetchTodosSuccess = data => {
@@ -55,19 +19,55 @@ export const fetchTodosSuccess = data => {
   }
 }
 
-export const fetchAllTodos = () => { 
+export const addTodo = text => {
   return async (dispatch) => {
-    const response = await axios.get(`${todolistUrl}`);
-    dispatch(fetchTodosSuccess(response.data));
-        }       
-  };  
+    const response = await axios.post(`${todolistUrl}`, {text});
+    dispatch(addTodosSuccess(response.data));
+    }
+  }
+ 
+const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
+export const addTodosSuccess = response => {  
+  return {
+    type: ADD_TODO_SUCCESS,
+    payload: {
+      id: response._id,
+      text: response.text
+    }
+  }
+}
+
+const EDIT_TODO = 'EDIT_TODO'
+export const editTodo = (id, text) => {
+  axios.put(`${todolistUrl}/${id}`, {text});
+  return {
+    type: EDIT_TODO,
+    payload: {
+      id,
+      text
+    }
+  }
+}
+
+const DELETE_TODO = 'DELETE_TODO'
+export const deleteTodo = (id) => {
+  axios.delete(`${todolistUrl}/${id}`);
+  return {
+    type: DELETE_TODO,
+    payload: {
+      id
+    }
+  }
+}
 
 const TOGGLE_SWITCH = 'TOGGLE_SWITCH'
-export const toggleSwitch = id => {
+export const toggleSwitch = (id, done) => {
+  axios.put(`${todolistUrl}/${id}`, {done: !done});
   return {
     type: TOGGLE_SWITCH,
     payload: {
-      id
+      id,
+      done
     }
   }
 }
@@ -84,7 +84,7 @@ export const searchTodosSuccess = todoList => {
 
 export const searchTodo = text => {
   return async (dispatch) => {
-    const response = await axios.get(`http://localhost:4000/api/todolist/`);
+    const response = await axios.get(`${todolistUrl}`);
     const todoList = response.data.filter((todo) => todo.text.toLowerCase().includes(text.toLowerCase()))
       dispatch(searchTodosSuccess (todoList));
   }

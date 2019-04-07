@@ -16,7 +16,7 @@ class TodoList extends React.Component {
     <div className='ToDoList-Item' style={{borderColor: todo.done ? 'red' : ''}}  key={todo._id}>         
       <div className="ToDoList-Checkbox" >
         <div className="ui fitted checkbox">
-          <input type="checkbox" checked={todo.done} onChange={() => this.props.toggleSwitch(todo.id)} />
+          <input type="checkbox" checked={todo.done} onChange={() => this.props.toggleSwitch(todo._id, todo.done)} />
           <label></label>
         </div>
       </div>       

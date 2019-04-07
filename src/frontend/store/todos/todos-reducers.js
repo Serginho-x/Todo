@@ -11,26 +11,25 @@ export default function Todos(state=initialState, action){
                 ...state,
                 todoList:  Object.values(action.payload.data)
             }}
-        case 'ADD_TODO': {
+        case 'ADD_TODO_SUCCESS': {
             const payload = action.payload;
             return { 
                 ...state,
                 todoList: [...state.todoList, {
-                          id: payload.id,
+                          _id: payload.id,
                           text: payload.text,
                           done: false
                         }]
             }}  
-        case 'EDIT_TODO':{
+        case 'EDIT_TODO': {
         const todoList = state.todoList.map(todo =>
-            todo.id === action.payload.id ? { ...todo, text: action.payload.text } : todo)
+            todo._id === action.payload.id ? { ...todo, text: action.payload.text } : todo)
             return {
                 ...state,
                 todoList
             }}
         case 'DELETE_TODO': {
-            console.log('fd')
-            const todoList = state.todoList.filter(todo => todo._id !== action.payload._id )
+            const todoList = state.todoList.filter(todo => todo._id !== action.payload.id )
             return {
                 ...state,
                 todoList
