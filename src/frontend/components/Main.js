@@ -2,10 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { addTodo, editTodo, deleteTodo, fetchAllTodos, toggleSwitch, searchTodo, filterTodos } from '../store/todos/todos-actions'
-import TodoList from './TodoList'
+import { addTodo,
+  editTodo,
+  deleteTodo,
+  fetchAllTodos, 
+  toggleSwitch,
+  searchTodo,
+  filterTodos } from '../store/todos/todos-actions'
 import { getVisibleTodos } from '../store/todos/selectors';
-
+import TodoList from './TodoList'
 import '../styles/Main.css'
 
 class Main extends React.Component {  

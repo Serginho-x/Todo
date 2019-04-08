@@ -1,0 +1,36 @@
+.header-box {        
+    margin-bottom: 50px;
+    background-color:#00b5ad;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+    font: 14pt bold  sans-serif;
+}
+
+    .header-box-sign{
+        height: 40px;
+        line-height: 40px;
+        width: 100px;
+        text-align: center;
+      
+    }
+
+    .header-box div:hover{
+        color: #00b5ad;
+        cursor: pointer
+     }
+
+a {
+color: black;
+}
+
+.clue{
+    color: rgb(232, 91, 70);
+    text-decoration: underline !important;
+    cursor: pointer
+}
+
+.recover-title{
+    margin-bottom: 20px;
+}

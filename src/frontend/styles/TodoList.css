@@ -18,6 +18,7 @@
 .ToDoList-Buttons i:hover{
    color:#00b5ad;
 }
+
 .ToDoList-Checkbox{
     margin: auto 5px;
     display: flex;
