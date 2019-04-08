@@ -36,12 +36,11 @@ export default function Todos(state=initialState, action){
             }}
         case 'TOGGLE_SWITCH': {
             const todoList = state.todoList.map(todo =>
-            todo.id === action.payload.id ? { ...todo, done: !todo.done } : todo)
+            todo._id === action.payload.id ? { ...todo, done: action.payload.done } : todo)
             return {
                 ...state,
                 todoList
             }}
-
         case 'SEARCH_TODOS_SUCCESS': {
             return {
               ...state,

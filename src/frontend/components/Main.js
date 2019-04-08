@@ -103,7 +103,7 @@ const mapDispatchToProps = dispatch => {
     deleteTodo: (id) => dispatch(deleteTodo(id)),   
     editTodo: (id, item) => dispatch(editTodo(id, item)),
     fetchAllTodos: (item) => dispatch(fetchAllTodos(item)),
-    toggleSwitch: (item) => dispatch(toggleSwitch(item)),
+    toggleSwitch: (id, item) => dispatch(toggleSwitch(id, item)),
     searchTodo: (id) => dispatch(searchTodo(id)),
     filterTodos: (item) => dispatch(filterTodos(item))
   }

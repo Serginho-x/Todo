@@ -8,9 +8,9 @@ export const getVisibleTodos = createSelector(
     (todoList, filters) => {
     switch (filters) {
       case 'Done':
-        return todoList.filter(todo => !todo.done);
-      case 'Undone':
         return todoList.filter(todo => todo.done);
+      case 'Undone':
+        return todoList.filter(todo => !todo.done);
       default:
         return todoList;
     }

@@ -67,7 +67,7 @@ export const toggleSwitch = (id, done) => {
     type: TOGGLE_SWITCH,
     payload: {
       id,
-      done
+      done: !done
     }
   }
 }
