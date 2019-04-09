@@ -4,7 +4,26 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import '../styles/Sign.css'
 
-class SignUp extends React.Component {  
+class SignIn extends React.Component {  
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          email: '',
+          password: '',
+        };    
+      }
+
+    handleInputChange = (event) => {
+        if(event.target.email){
+            const email = event.target.email;
+            this.setState({ email: email })
+        };
+        if(event.target.password){
+            const password = event.target.password;
+            this.setState({ password: password })
+        };
+    }
 
     render(){
         return(
@@ -20,18 +39,26 @@ class SignUp extends React.Component {
          
             <div className="ui grid">           
                 <div className="ui card six wide column centered stackable page ">                              
-                    <form className="ui form" >
+                    <form className="ui form" onSubmit={this.handleSubmit}>
                         <h4 className="ui dividing header centered">Authorization</h4>                        
                         <div className="field">
                             <label>Email</label>
                             <div className="field">
-                                <input type="text" placeholder="Email"/>
+                                <input  type="text"
+                                        placeholder="Email"
+                                        value={this.state.email}
+                                        onChange={this.handleInputChange}
+                                />
                             </div>
                         </div>                         
                         <div className="field">
                             <label>Password</label>
                             <div className="field">
-                                <input type="text" placeholder="Password"/>
+                                <input type="text"
+                                       placeholder="Password"
+                                       value={this.state.password}
+                                       onChange={this.handleInputChange}
+                                />
                             </div>
                         </div>                                 
                         <div className="ui header centered">
@@ -48,4 +75,4 @@ class SignUp extends React.Component {
         )
     } 
 }
-export default SignUp
+export default SignIn

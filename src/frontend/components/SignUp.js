@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import '../styles/Sign.css'
 
-class SignIn extends React.Component {  
+class SignUp extends React.Component {  
 
     render(){
         return(
@@ -61,4 +61,4 @@ class SignIn extends React.Component {
         )
     } 
 }
-export default SignIn
+export default SignUp

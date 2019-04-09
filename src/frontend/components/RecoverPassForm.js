@@ -24,7 +24,7 @@ class RecoverPassForm extends React.Component {
                         <h4 className="ui dividing header centered">Recover password</h4>                        
                         <div className="field">
                         <div className="recover-title">
-                            Please enter your e-mail address and we’ll send you an e-mail where you can reset your password.
+                            Please enter your e-mail address and we’ll send your password.
                         </div>
                             <label>Email</label>
                             <div className="ui left icon input field">

@@ -16,16 +16,14 @@ class App extends Component {
     render() {
       return ( 
         <Router history={history}>   
-        <Route exact= {true} path="/" component={SignUp}/>
-        <Route path="/recover-password" component={RecoverPassForm}/>
+        <Route exact= {true} path="/" component={SignUp}/>       
         <Route path="/sign-in" component={SignIn}/>
-        <Route path="/todo" component={Main}/>
+        <Route path="/recover-password" component={RecoverPassForm}/>
+        <Route path="/todos" component={Main}/>
         </Router>    
       );
     }
   }
-
-
 
 ReactDOM.render(
     <Provider store = { store }>
