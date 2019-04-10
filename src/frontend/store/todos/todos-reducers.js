@@ -5,8 +5,7 @@ const initialState = {
   
 export default function Todos(state=initialState, action){    
     switch(action.type){
-        case 'FETCH_TODOS_SUCCESS': {
-            console.log(Object.values(action.payload.data))
+        case 'FETCH_TODOS_SUCCESS': {            
             return {
                 ...state,
                 todoList:  Object.values(action.payload.data)

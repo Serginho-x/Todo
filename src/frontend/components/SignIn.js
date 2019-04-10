@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
+
+import { login } from '../store/users/users-action';
 import '../styles/Sign.css'
 
 class SignIn extends React.Component {  
-
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -15,15 +16,25 @@ class SignIn extends React.Component {
       }
 
     handleInputChange = (event) => {
-        if(event.target.email){
-            const email = event.target.email;
+        if(event.target.value){
+            const email = event.target.value;
             this.setState({ email: email })
         };
-        if(event.target.password){
-            const password = event.target.password;
+        if(event.target.value){
+            const password = event.target.value;
             this.setState({ password: password })
         };
     }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const {login} = this.props;
+        const {email, password} = this.state;                           
+        if (email && password ) { 
+            login(this.state.email, this.state.password);
+        }
+        this.setState({ email: '', password: '' })
+      }
 
     render(){
         return(
@@ -75,4 +86,13 @@ class SignIn extends React.Component {
         )
     } 
 }
-export default SignIn
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (email, password) => dispatch(login(email, password)),    
+  }
+}
+export default connect(
+    null,
+    mapDispatchToProps
+)(SignIn)

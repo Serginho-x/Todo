@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 
 import { addTodo,
   editTodo,
@@ -9,9 +10,12 @@ import { addTodo,
   toggleSwitch,
   searchTodo,
   filterTodos } from '../store/todos/todos-actions'
+import { logout } from '../store/users/users-action'
 import { getVisibleTodos } from '../store/todos/selectors';
-import TodoList from './TodoList'
-import '../styles/Main.css'
+import TodoList from './TodoList';
+import '../styles/Main.css';
+import '../styles/Sign.css'
+
 
 class Main extends React.Component {  
   static propTypes = {
@@ -30,8 +34,7 @@ class Main extends React.Component {
   }
 
   handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.value;
+    const value = event.target.value;
     this.setState({ value: value })
   }
 
@@ -49,18 +52,27 @@ class Main extends React.Component {
   }
 
   render(){
-      const {todos, filterTodos} = this.props
-      return(      
-          <div className="App">
-            <div> 
+      const {todos, filterTodos, logout} = this.props
+      return(     
+       <div>
+        <div className="header-box">
+          <Link to="/sign-in"> 
+              <div className="header-box-sign" type="button" onClick={()=> logout()}>Log out</div>
+          </Link>
+          </div> 
+       <div>  
+          <div className="App">                       
                 <div className="Title">
                       Todo List
                 </div>
               <div>
                   <form className="ui fluid form"  onSubmit={this.handleSubmit}>
                       <div className="field input">
-                          <input type="text" placeholder="New TODO"
-                          value={this.state.value} onChange={this.handleInputChange}/>            
+                          <input type="text"
+                                 placeholder="New TODO"
+                                 value={this.state.value} 
+                                 onChange={this.handleInputChange}
+                          />            
                       </div>                  
                       <button className="ui teal button">
                           Add
@@ -92,7 +104,9 @@ class Main extends React.Component {
                 editTodo={this.props.editTodo}
               />
               </div>
-          </div>      
+          </div> 
+          </div>    
+        
       )
     }
   } 
@@ -110,7 +124,8 @@ const mapDispatchToProps = dispatch => {
     fetchAllTodos: (item) => dispatch(fetchAllTodos(item)),
     toggleSwitch: (id, item) => dispatch(toggleSwitch(id, item)),
     searchTodo: (id) => dispatch(searchTodo(id)),
-    filterTodos: (item) => dispatch(filterTodos(item))
+    filterTodos: (item) => dispatch(filterTodos(item)),
+    logout: () => dispatch(logout())
   }
 }
 

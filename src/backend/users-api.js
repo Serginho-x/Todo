@@ -25,7 +25,7 @@ router.post('/register', asyncMiddleware(async (req, res, next) => {
 
 router.post('/login', asyncMiddleware(async (req, res, next) => {
     let userData = req.body;
-    await User.findOne({firstName: userData.firstName}, (err, user) => {
+    await User.findOne({email: userData.email}, (err, user) => {
         if (err) {
             console.log(err)
         } else {
