@@ -2,22 +2,25 @@ import axios from 'axios';
 
 const todolistUrl = 'http://localhost:4000/api/todolist';  // URL to todolist
 
+const FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS'
 export const fetchAllTodos = () => { 
   return async (dispatch) => {
+    try {
     const response = await axios.get(`${todolistUrl}`);
-    dispatch(fetchTodosSuccess(response.data));
-        }       
+    dispatch(success(response.data));
+    }   catch(error){
+      console.log(Object.keys(error), error.message); 
+    }}
+    
+    
+    function success (data){
+      return {
+        type: FETCH_TODOS_SUCCESS, 
+        payload: {
+          data
+        }
+      }}
   };
-
-const FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS'
-export const fetchTodosSuccess = data => {
-  return {
-    type: FETCH_TODOS_SUCCESS,
-    payload: {
-      data
-    }
-  }
-}
 
 export const addTodo = text => {
   return async (dispatch) => {
