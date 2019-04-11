@@ -1,7 +1,0 @@
-{
-    "todoList":[    
-        {"id": 15, "text": "Wash my car", "done": false},
-        {"id": 25, "text": "Go for a walk", "done": true},
-        {"id": 35, "text": "Go to the cinema", "done": false}
-    ]
-}
