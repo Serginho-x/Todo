@@ -1,22 +1,18 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express-promise-router')();
 const User = require('../models/user-schema');
 
- const register = async (req, res) => {
-    const { email, password } = req.body  
-    try {
-      const userData = await new User({ email, password })  
-      const user = await userData.save()  
-      res.json(user)
-    }
-    catch(err) {
-      res.status(500).json(err)
-    }
+router.register = async (req, res) => {
+    const { firstName, lastName, nickName, email, password } = req.body  
+    const userData = { firstName, lastName, nickName, email, password }      
+    const user = new User(userData)  ;  
+    const err = user.joiValidate(userData);
+    if (err.error) throw err;      
+    const users = await user.save();
+      return res.json(users)    
   }
 
-const login = async (req, res) => {
+router.login = async (req, res) => {
 const { email, password } = req.body
-try {
     const user = await User.findOne({ email })
     if(!user) {
     res.status(401).json({ message: 'Wrong password' })
@@ -28,12 +24,7 @@ try {
     } else {
     res.status(401).json({ message: 'invalid cred' })
     }
-}
-catch(err) {
-    res.status(500).json(err)
-}
+
 }
 
-
-
-module.exports = {register, login};
+module.exports = router;

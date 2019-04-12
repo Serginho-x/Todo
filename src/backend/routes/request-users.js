@@ -1,9 +1,6 @@
-const express = require ('express')
-const router = express.Router()
+const router = require ('../controllers/users')
 
-const { register, login  } = require ('../controllers/users')
-
-router.post('/register', register)
-router.post('/login', login)
+router.post('/register', router.register)
+router.post('/login', router.login)
 
 module.exports = router

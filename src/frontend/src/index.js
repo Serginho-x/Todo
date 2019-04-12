@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import { Provider } from 'react-redux';
 import { store } from './store/configureStore'
 import Main from './components/Main';
@@ -11,6 +10,7 @@ import { Route, Router, BrowserRouter, Redirect} from 'react-router-dom';
 import serviceWorker from './serviceWorker';
 
 import history from './history'
+import './index.css';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (

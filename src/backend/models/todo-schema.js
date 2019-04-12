@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Joi = require('joi');
 
-const TodoSchema = new Schema({
+
+const todoSchema = new Schema({
 	text: {
 		type: Schema.Types.String
 	},	
@@ -10,5 +12,12 @@ const TodoSchema = new Schema({
 	}
 });
 
-const Todo = mongoose.model('todo', TodoSchema);
-module.exports = Todo;
+todoSchema.methods.joiValidate = function(obj) {	
+	const schema = Joi.object().keys({
+		text: Joi.string().required(),
+		done: Joi.boolean().default(false)		
+	})
+	return Joi.validate(obj, schema);
+}
+
+module.exports = mongoose.model('Todo', todoSchema);;

@@ -1,46 +1,29 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express-promise-router')();
 const Todo = require('../models/todo-schema');
 
-const getAllTodos = async (req, res) => {
-  try {
-    const todos = await Todo.find({});
-    res.json(todos);
-  }
-  catch(err) {
-    res.status(500).json(err)
-  }
+router.getAllTodos = async (req, res) => {
+   const todos = await Todo.find({});
+    return  res.json(todos);    
 }
 
- const addTodo = async (req, res) => {
-  try {
-    const todoItem = new Todo({ text: req.body.text, done: false });
+router.addTodo = async (req, res) => {
+    const { text } = req.body
+    const todoData = { text , done: false }
+    const todoItem = new Todo(todoData);
+    const err = todoItem.joiValidate(todoData)
+    if (err.error) {return  res.status(422).json(err)};      
     const todo = await todoItem.save();
-    res.json(todo);
-  }
-  catch(err) {
-    res.status(500).json(err)
-  }
+     return res.json(todo); 
 }
 
- const updateTodo = async (req, res) => {
-  try {
+router.updateTodo = async (req, res) => {  
     const todo = await Todo.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    res.json(todo);
-  }
-  catch(err) {
-    res.status(500).json(err)
-  }
+      return res.json(todo);
 }
 
-const deleteTodo = async (req, res) => {
-  try {
-    const todos = await Todo.findByIdAndRemove(req.params.id );
-    res.json(todos);
-  }
-  catch(err) {
-    res.status(500).json(err)
-  }
+router.deleteTodo = async (req, res) => { 
+    const todos = await Todo.findByIdAndRemove(req.params.id);
+      return res.json(todos);  
 }
 
-module.exports = {getAllTodos, updateTodo, addTodo , deleteTodo};
+module.exports = router;

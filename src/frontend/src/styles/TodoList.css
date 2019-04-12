@@ -1,6 +1,6 @@
 .ToDoList-Item {
     width: 600px;
-    height: 40px;
+    min-height: 40px;
     margin-top: 10px;
     padding: 5px;
     border: 2px solid #00b5ad;
@@ -20,7 +20,11 @@
 }
 
 .ToDoList-Checkbox{
-    margin: auto 5px;
+    margin: auto 10px auto 5px;
     display: flex;
     align-items: center;
+}
+
+.ToDoList-Text{
+    text-align: start
 }

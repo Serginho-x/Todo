@@ -12,7 +12,7 @@ class SignUp extends React.Component {
                 <Link to="/sign-in"> 
                     <div className="header-box-sign" type="button">Sign in</div>
                 </Link>
-                <Link to="/"> 
+                <Link to="/sign-up"> 
                     <div className="header-box-sign" type="button">Sign up</div>
                 </Link>
             </div>            

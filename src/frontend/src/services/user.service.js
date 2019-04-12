@@ -5,17 +5,14 @@ export const _login = async (email, password) => {
         body: JSON.stringify({ email, password })
     };
     const response = await fetch(`http://localhost:4000/users/login/`, requestOptions);
-    const user = await handleResponse(response);
-    // login successful if there's a jwt token in the response
-    if (user.token) {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
+    const user = await handleResponse(response);    
+    if (user.token) {     
         localStorage.setItem('user', JSON.stringify(user));
     }
     return user;
 }
 
-export const _logout = () => {
-    // remove user from local storage to log user out
+export const _logout = () => {   
     localStorage.removeItem('user');
 }
 

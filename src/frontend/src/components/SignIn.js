@@ -16,15 +16,12 @@ class SignIn extends React.Component {
       }
 
     handleInputChange = (event) => {
-        if(event.target.value){
-            const email = event.target.value;
-            this.setState({ email: email })
+        event.target.name === "email" ? 
+            this.setState({ email: event.target.value })
+       :
+            this.setState({ password:  event.target.value })
         };
-        if(event.target.value){
-            const password = event.target.value;
-            this.setState({ password: password })
-        };
-    }
+    
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -43,7 +40,7 @@ class SignIn extends React.Component {
                 <Link to="/sign-in"> 
                     <div className="header-box-sign" type="button">Sign in</div>
                 </Link>
-                <Link to="/"> 
+                <Link to="/sign-up"> 
                     <div className="header-box-sign" type="button">Sign up</div>
                 </Link>
             </div> 
@@ -55,7 +52,8 @@ class SignIn extends React.Component {
                         <div className="field">
                             <label>Email</label>
                             <div className="field">
-                                <input  type="text"
+                                <input  name="email" 
+                                        type="text"
                                         placeholder="Email"
                                         value={this.state.email}
                                         onChange={this.handleInputChange}
@@ -65,7 +63,8 @@ class SignIn extends React.Component {
                         <div className="field">
                             <label>Password</label>
                             <div className="field">
-                                <input type="text"
+                                <input name="password"
+                                       type="text"
                                        placeholder="Password"
                                        value={this.state.password}
                                        onChange={this.handleInputChange}

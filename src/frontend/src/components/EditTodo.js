@@ -32,7 +32,7 @@ class EditTodo extends React.Component {
       return (
         this.state.isEdit ? 
         <React.Fragment>
-            {text}                     
+            <div className="ToDoList-Text">{text}</div>                     
             <div className="ToDoList-Buttons">
                 <i className="edit icon" onClick={() => this.setState({isEdit: !this.state.isEdit})}></i>              
                 <i className="trash icon" onClick={() => done && this.props.deleteTodo(id)}></i>
