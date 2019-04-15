@@ -26,5 +26,9 @@
 }
 
 .ToDoList-Text{
-    text-align: start
+    text-align: start;
+}
+
+.done-border{
+    border : 2px solid red; 
 }

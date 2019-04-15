@@ -1,24 +1,41 @@
-import { _login, _logout} from '../../services/user.service';
+import {_signUp,  _login, _logout} from '../../services/user.service';
 import history from '../../history'
 
+const REGISTER_REQUEST = 'REGISTER_REQUEST'
+const REGISTER_SUCCESS = 'REGISTER_REQUEST'
+const REGISTER_FAILURE = 'REGISTER_FAILURE'
 const LOGIN_REQUEST = 'LOGIN_REQUEST'
-const LOGIN_SUCCESS = 'LOGIN_REQUEST'
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 const LOGIN_FAILURE = 'LOGIN_FAILURE'
 const LOGOUT = 'LOGOUT'
 
-export const login = (email, password) => {
+export const signUp = (form) => {
+    return async (dispatch) => {
+        dispatch(request( form.email ));
+        const response = await _signUp(form)
+        if (response){
+                dispatch(success(response));
+                history.push('/');
+            } else{            
+                dispatch(failure(response.error));
+            }        
+    };
+
+    function request(user) { return { type: REGISTER_REQUEST, user } }
+    function success(user) { return { type: REGISTER_SUCCESS, user } }
+    function failure(error) { return { type: REGISTER_FAILURE, error } }
+}
+
+export const signIn = (email, password) => {
     return async (dispatch) => {
         dispatch(request({ email }));
-        await _login(email, password)
-        .then(            
-            user => { 
-                dispatch(success(user));
+        const response = await _login(email, password)
+        if (response.user){
+                dispatch(success(response.user));
                 history.push('/');
-            },
-            error => {
-                dispatch(failure(error));
-            }
-        );
+            } else{            
+                dispatch(failure(response.error));
+            }        
     };
 
     function request(user) { return { type: LOGIN_REQUEST, user } }

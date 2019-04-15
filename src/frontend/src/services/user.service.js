@@ -1,10 +1,22 @@
+export const _signUp = async (form) => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+    };
+    const response = await fetch(`http://localhost:4000/api/users/register/`, requestOptions);
+    const user = await handleResponse(response);
+    console.log(user);
+    return user;
+}
+
 export const _login = async (email, password) => {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
     };
-    const response = await fetch(`http://localhost:4000/users/login/`, requestOptions);
+    const response = await fetch(`http://localhost:4000/api/users/login/`, requestOptions);
     const user = await handleResponse(response);    
     if (user.token) {     
         localStorage.setItem('user', JSON.stringify(user));
@@ -18,6 +30,7 @@ export const _logout = () => {
 
 const handleResponse = (response) => {
     return response.text().then(text => {
+        console.log(text)
         const data = text && JSON.parse(text);
         if (!response.ok) {
             if (response.status === 401) {

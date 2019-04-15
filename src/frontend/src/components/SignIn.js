@@ -2,35 +2,34 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 
-import { login } from '../store/users/users-action';
+import { signIn } from '../store/users/users-action';
 import '../styles/Sign.css'
 
 class SignIn extends React.Component {  
     
     constructor(props) {
-        super(props);
-        this.state = {
-          email: '',
-          password: '',
-        };    
-      }
+      super(props);
+      this.state = {
+          form: {
+            email: '',
+            password: ''
+          }
+      };    
+    }
 
     handleInputChange = (event) => {
-        event.target.name === "email" ? 
-            this.setState({ email: event.target.value })
-       :
-            this.setState({ password:  event.target.value })
-        };
-    
+        const {name, value} = event.target
+        this.setState(state => ({...state, form: {...state.form, [name]: value}}))
+    };    
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const {login} = this.props;
-        const {email, password} = this.state;                           
+        const {signIn} = this.props;
+        const {email, password} = this.state.form;                           
         if (email && password ) { 
-            login(this.state.email, this.state.password);
+            signIn(this.state.email, this.state.password);
         }
-        this.setState({ email: '', password: '' })
+        this.setState({form: { email: '', password: '' }})
       }
 
     render(){
@@ -88,9 +87,10 @@ class SignIn extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (email, password) => dispatch(login(email, password)),    
+    signIn: (email, password) => dispatch(signIn(email, password)),    
   }
 }
+
 export default connect(
     null,
     mapDispatchToProps

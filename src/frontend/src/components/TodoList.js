@@ -13,7 +13,7 @@ class TodoList extends React.Component {
   render(){
     const {todos} = this.props;
     const todoList = todos.map((todo) => ( 
-    <div className='ToDoList-Item' style={{borderColor: todo.done ? 'red' : ''}}  key={todo._id}>         
+    <div className={"ToDoList-Item " + (todo.done ? "done-border" : '')} key={todo._id}>         
       <div className="ToDoList-Checkbox" >
         <div className="ui fitted checkbox">
           <input type="checkbox" checked={todo.done} onChange={() => this.props.toggleSwitch(todo._id, todo.done)} />
@@ -25,7 +25,7 @@ class TodoList extends React.Component {
         text={todo.text}
         done={todo.done}
         editTodo={this.props.editTodo}
-        deleteTodo={this.props.deleteTodo}
+        deleteTodo={this.props.deleteTodo}  
       />
     </div>))
 
