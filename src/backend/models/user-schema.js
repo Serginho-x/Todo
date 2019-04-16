@@ -32,10 +32,10 @@ userSchema.methods.joiValidate = function(obj) {
 	return Joi.validate(obj, schema);
 }
 
-userSchema.pre('save', async (next) => {
-	const salt =	await bcrypt.genSalt(12).catch((err) => next(err));
-	const hash = await bcrypt.hash(this.password, salt);
-	user.password = hash
+userSchema.pre('save', async function(next)  {
+	const salt =	await bcrypt.genSalt(12);
+	const hash = await bcrypt.hash(this.password, salt).catch((err) => next(err));
+	this.password = hash
       next()
 })
 

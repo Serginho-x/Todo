@@ -27,7 +27,7 @@ class SignIn extends React.Component {
         const {signIn} = this.props;
         const {email, password} = this.state.form;                           
         if (email && password ) { 
-            signIn(this.state.email, this.state.password);
+            signIn(email, password);
         }
         this.setState({form: { email: '', password: '' }})
       }
@@ -63,7 +63,7 @@ class SignIn extends React.Component {
                             <label>Password</label>
                             <div className="field">
                                 <input name="password"
-                                       type="text"
+                                       type="password"
                                        placeholder="Password"
                                        value={this.state.password}
                                        onChange={this.handleInputChange}
@@ -84,6 +84,7 @@ class SignIn extends React.Component {
         )
     } 
 }
+
 
 const mapDispatchToProps = dispatch => {
   return {

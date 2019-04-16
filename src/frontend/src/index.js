@@ -27,8 +27,7 @@ class App extends Component {
           <PrivateRoute exact path="/" component={Main} /> 
           <Route path="/sign-up" component={SignUp}/>       
           <Route path="/sign-in" component={SignIn}/>
-          <Route path="/recover-password" component={RecoverPassForm}/>        
-          <Route path="/todos" component={Main}/>
+          <Route path="/recover-password" component={RecoverPassForm}/> 
         </Router>    
       );
     }
