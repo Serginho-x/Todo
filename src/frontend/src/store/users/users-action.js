@@ -1,3 +1,4 @@
+import {showModal, hideModal} from '../modals/modals-actions';
 import {_signUp,  _login, _logout} from '../../services/user.service';
 import history from '../../history'
 
@@ -13,10 +14,16 @@ export const signUp = (form) => {
     return async (dispatch) => {
         await dispatch(request( form.email ));
         const response = await _signUp(form)
-        if (response){
+        if (!response.error){          
                 dispatch(success(response));
                 history.push('/');
-            } else{            
+            } else {   
+                dispatch(showModal({
+                    open: true,
+                    title: 'Error',
+                    message: response.error,
+                    closeModal: () => dispatch(hideModal())
+                  }, 'alert'))     
                 dispatch(failure(response.error));
             }        
     };

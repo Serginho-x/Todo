@@ -25,12 +25,14 @@ class SignIn extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const {signIn} = this.props;
-        const {email, password} = this.state.form;                           
+        const {email, password} = this.state.form;                     
         if (email && password ) { 
-            signIn(email, password);
-        }
-        this.setState({form: { email: '', password: '' }})
-      }
+            signIn(email, password);           
+        } else {
+            this.setState({form: { email: '', password: '' }})
+            return
+        }       
+    }   
 
     render(){
         return(
@@ -84,7 +86,6 @@ class SignIn extends React.Component {
         )
     } 
 }
-
 
 const mapDispatchToProps = dispatch => {
   return {

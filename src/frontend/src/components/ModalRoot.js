@@ -5,32 +5,26 @@ import ReactModal from 'react-modal';
 import { default as modalTypes } from './modals';
 
 const MODAL_TYPES = {
-  'alert': modalTypes.alertModal,
-  'delete': modalTypes.deleteModal,
+  'alert': modalTypes.AlertModal
 }
 
-const mapStateToProps = state => ({
-  ...state.modal
-})
-
-class ModalContainer extends React.Component {
+class ModalRoot extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       modalIsOpen: false
     };
-    this.closeModal = this.closeModal.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
       this.setState({
-        modalIsOpen: nextProps.modalProps.open
+        modalIsOpen: !this.state.modalIsOpen
       })
     }
   }
 
-  closeModal() {
+  closeModal = ()=> {
     this.setState({ modalIsOpen: false })
   }
 
@@ -60,4 +54,8 @@ class ModalContainer extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, null)(ModalContainer)
+const mapStateToProps = store => ({
+  ...store.modals
+})
+
+export default connect(mapStateToProps, null)(ModalRoot)

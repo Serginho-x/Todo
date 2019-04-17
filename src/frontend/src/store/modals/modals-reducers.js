@@ -3,7 +3,7 @@ const initialState = {
   modalProps: {}
 }
 
-export default (state = initialState, action) => {
+export default function Modals(state = initialState, action){
   switch (action.type) {
     case 'SHOW_MODAL':
       return {

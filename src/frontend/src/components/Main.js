@@ -9,13 +9,12 @@ import { addTodo,
   fetchAllTodos, 
   toggleSwitch,
   searchTodo,
-  filterTodos } from '../store/todos/todos-actions'
-import { logout } from '../store/users/users-action'
+  filterTodos } from '../store/todos/todos-actions';
+import { logout } from '../store/users/users-action';
 import { getVisibleTodos } from '../store/todos/selectors';
 import TodoList from './TodoList';
 import '../styles/Main.css';
 import '../styles/Sign.css'
-
 
 class Main extends React.Component {  
   static propTypes = {
@@ -31,7 +30,7 @@ class Main extends React.Component {
 
   componentDidMount() {
     this.props.fetchAllTodos();
-  }
+  }  
 
   handleInputChange = (event) => {
     const value = event.target.value;
@@ -60,7 +59,7 @@ class Main extends React.Component {
               <div className="header-box-sign" type="button" onClick={()=> logout()}>Log out</div>
           </Link>
           </div> 
-       <div>  
+       <div>
           <div className="App">                       
                 <div className="Title">
                       Todo List
@@ -103,7 +102,7 @@ class Main extends React.Component {
                 deleteTodo={this.props.deleteTodo}
                 editTodo={this.props.editTodo}
               />
-              </div>
+              </div>            
           </div> 
           </div>    
         

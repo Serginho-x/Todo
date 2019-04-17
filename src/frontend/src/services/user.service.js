@@ -5,6 +5,9 @@ export const _signUp = async (form) => {
         body: JSON.stringify(form)
     };
     const response = await fetch(`http://localhost:4000/api/users/register/`, requestOptions);
+    if (response.status === 401) {  
+       return  {error: 'User with current e-mail exist'}
+    }
     const user = await handleResponse(response);
     return user;
 }

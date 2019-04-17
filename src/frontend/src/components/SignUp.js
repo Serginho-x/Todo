@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ModalRoot from './ModalRoot';
 
 import { signUp } from '../store/users/users-action';
 import '../styles/Sign.css'
@@ -206,7 +207,8 @@ class SignUp extends React.Component {
                             </div>
                         }                                    
                     </form>
-                </div>              
+                </div>    
+                <ModalRoot />          
             </div>
         </React.Fragment>
         )
