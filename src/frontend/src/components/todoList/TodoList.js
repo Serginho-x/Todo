@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import EditTodo from './EditTodo'
-import '../styles/TodoList.css';
+import './TodoList.css';
 
 class TodoList extends React.Component { 
   static propTypes = {

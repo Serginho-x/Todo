@@ -1,5 +1,5 @@
 import {showModal, hideModal} from '../modals/modals-actions';
-import {_signUp,  _login, _logout} from '../../services/user.service';
+import axios from 'axios';
 import history from '../../history'
 
 const REGISTER_REQUEST = 'REGISTER_REQUEST'
@@ -13,15 +13,15 @@ const LOGOUT = 'LOGOUT'
 export const signUp = (form) => {
     return async (dispatch) => {
         await dispatch(request( form.email ));
-        const response = await _signUp(form)
-        if (!response.error){          
+        const response = await axios.post(`http://localhost:4000/api/users/register/`, {form});
+        if (response.status !== 401){          
                 dispatch(success(response));
                 history.push('/');
             } else {   
                 dispatch(showModal({
                     open: true,
                     title: 'Error',
-                    message: response.error,
+                    message: 'User with this email already exist',
                     closeModal: () => dispatch(hideModal())
                   }, 'alert'))     
                 dispatch(failure(response.error));
@@ -31,20 +31,22 @@ export const signUp = (form) => {
     function request(user) { return { type: REGISTER_REQUEST, user } }
     function success(user) { return { type: REGISTER_SUCCESS, user } }
     function failure(error) { return { type: REGISTER_FAILURE, error } }
-}
+}   
 
 export const signIn = (email, password) => {
     return async (dispatch) => {
         await dispatch(request( email ));
-        const response = await _login(email, password)
-        if (!response.error){
+        const response = await axios.put(`http://localhost:4000/api/users/login/`, {email, password});
+
+        if (response.status !== 401){
+                localStorage.setItem('user', JSON.stringify(response))
                 dispatch(success(response));
                 history.push('/');
             } else { 
                 dispatch(showModal({
                     open: true,
                     title: 'Error',
-                    message: response.error,
+                    message: 'User doesn\'t exist or wrong password',
                     closeModal: () => dispatch(hideModal())
                   }, 'alert'))              
                 dispatch(failure(response.error));
@@ -57,6 +59,6 @@ export const signIn = (email, password) => {
 }
 
 export const logout = () => {
-    _logout();
+    localStorage.removeItem('user');
     return { type: LOGOUT };
 }

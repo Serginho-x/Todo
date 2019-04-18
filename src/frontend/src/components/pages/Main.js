@@ -9,12 +9,12 @@ import { addTodo,
   fetchAllTodos, 
   toggleSwitch,
   searchTodo,
-  filterTodos } from '../store/todos/todos-actions';
-import { logout } from '../store/users/users-action';
-import { getVisibleTodos } from '../store/todos/selectors';
-import TodoList from './TodoList';
-import '../styles/Main.css';
-import '../styles/Sign.css'
+  filterTodos } from '../../store/todos/todos-actions';
+import { logout } from '../../store/account/account-action';
+import { getVisibleTodos } from '../../store/todos/selectors';
+import TodoList from '../todoList/TodoList';
+import './Main.css';
+import './Sign.css'
 
 class Main extends React.Component {  
   static propTypes = {

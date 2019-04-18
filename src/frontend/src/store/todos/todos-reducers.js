@@ -17,7 +17,8 @@ export default function Todos(state=initialState, action){
                 todoList: [...state.todoList, {
                           _id: payload._id,
                           text: payload.text,
-                          done: false
+                          done: false,
+                          userId: payload.userId
                         }]
             }}  
         case 'EDIT_TODO': {

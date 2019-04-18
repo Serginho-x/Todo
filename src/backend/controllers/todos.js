@@ -1,5 +1,6 @@
 const router = require('express-promise-router')();
 const Todo = require('../models/todo-schema');
+const jwtDecode = require('jwt-decode');
 
 router.getAllTodos = async (req, res) => {
    const todos = await Todo.find({});
@@ -7,8 +8,9 @@ router.getAllTodos = async (req, res) => {
 }
 
 router.addTodo = async (req, res) => {
-    const { text } = req.body
-    const todoData = { text , done: false }
+    const { text, token } = req.body;
+    const userId = jwtDecode(token).userId;
+    const todoData = { text , done: false, userId };
     const todoItem = new Todo(todoData);
     const err = todoItem.joiValidate(todoData)
     if (err.error) {return  res.status(422).json(err)};      

@@ -2,7 +2,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = user ? { loggedIn: true, user } : {};
 
-export default function Useers(state = initialState, action) {
+export default function Accounts(state = initialState, action) {
   switch (action.type) {
     case 'REGISTER_REQUEST':
       return {

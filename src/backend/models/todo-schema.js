@@ -9,13 +9,17 @@ const todoSchema = new Schema({
 	},	
 	done: {
 		type: Schema.Types.Boolean
+	},
+	userId: {
+		type: Schema.Types.String
 	}
 });
 
 todoSchema.methods.joiValidate = function(obj) {	
 	const schema = Joi.object().keys({
 		text: Joi.string().required(),
-		done: Joi.boolean().default(false)		
+		done: Joi.boolean().default(false),
+		userId: Joi.string().required()	
 	})
 	return Joi.validate(obj, schema);
 }

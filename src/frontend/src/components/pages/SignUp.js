@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import ModalRoot from './ModalRoot';
-import { signUp } from '../store/users/users-action';
-import '../styles/Sign.css'
+// import ModalRoot from '../modals/ModalRoot';
+import { signUp } from '../../store/account/account-action';
+import './Sign.css'
 
 class SignUp extends React.Component {  
 
@@ -208,7 +208,7 @@ class SignUp extends React.Component {
                         }                                    
                     </form>
                 </div>    
-                <ModalRoot />          
+           
             </div>
         </React.Fragment>
         )

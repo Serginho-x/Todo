@@ -2,6 +2,12 @@ import axios from 'axios';
 
 const todolistUrl = 'http://localhost:4000/api/todos';  // URL to todolist
 
+axios.interceptors.request.use(function (config) {
+  const token = localStorage.getItem('Token')
+  config.headers.Authorization =  token
+  return config
+}) 
+
 const FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS'
 export const fetchAllTodos = () => { 
   return async (dispatch) => {
@@ -24,7 +30,8 @@ const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
 export const addTodo = text => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${todolistUrl}`, {text});
+      var token = window.localStorage.getItem('user');
+      const response = await axios.post(`${todolistUrl}`, {text, token});
       dispatch(success(response.data));
     } 
     catch(error){

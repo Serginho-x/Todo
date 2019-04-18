@@ -26,8 +26,8 @@ router.login = async (req, res) => {
     }
     const isValid = bcrypt.compareSync(password, user.password);
     if (isValid){      
-      const token = jwt.sign({ email }, 'Vice', { expiresIn: '1h' } )      
-      return res.status(200).json({token});
+      const token = jwt.sign({ userId: user.id }, 'Vice', { expiresIn: '1h' } )      
+      return res.status(200).json(token);
     } else {
       return res.status(401).json({ message: 'Wrong password' });
     }

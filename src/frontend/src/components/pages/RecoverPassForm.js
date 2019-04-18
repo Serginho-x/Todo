@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import '../styles/Sign.css'
+import './Sign.css'
 
-class RecoverPassForm extends React.Component {  
-
+class RecoverPassForm extends React.Component { 
     render(){
         return(
             <React.Fragment>
