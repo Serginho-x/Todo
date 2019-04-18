@@ -19,6 +19,9 @@ export const _login = async (email, password) => {
         body: JSON.stringify({ email, password })
     };
     const response = await fetch(`http://localhost:4000/api/users/login/`, requestOptions);
+    if (response.status === 401) {  
+        return  {error: 'User doesn\'t exist or wrong password'}
+     }
     const user = await handleResponse(response);
     if (user.token) {     
         localStorage.setItem('user', JSON.stringify(user));

@@ -37,10 +37,16 @@ export const signIn = (email, password) => {
     return async (dispatch) => {
         await dispatch(request( email ));
         const response = await _login(email, password)
-        if (response){
+        if (!response.error){
                 dispatch(success(response));
                 history.push('/');
-            } else{            
+            } else { 
+                dispatch(showModal({
+                    open: true,
+                    title: 'Error',
+                    message: response.error,
+                    closeModal: () => dispatch(hideModal())
+                  }, 'alert'))              
                 dispatch(failure(response.error));
             }        
     };

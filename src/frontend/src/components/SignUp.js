@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ModalRoot from './ModalRoot';
 
+import ModalRoot from './ModalRoot';
 import { signUp } from '../store/users/users-action';
 import '../styles/Sign.css'
 
@@ -85,7 +85,7 @@ class SignUp extends React.Component {
 
     handleInputChange = (event) => {
         const {name, value} = event.target  
-        this.setState({...this.state, form: {...this.state.form, [name]: value}},    () => { this.validateField(name, value) });
+        this.setState({...this.state, form: {...this.state.form, [name]: value}},  () => { this.validateField(name, value) });
     };    
 
     handleSubmit = (event) => {

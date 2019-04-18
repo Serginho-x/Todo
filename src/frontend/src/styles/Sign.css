@@ -8,21 +8,21 @@
     font: 14pt bold  sans-serif;
 }
 
-    .header-box-sign{
-        height: 40px;
-        line-height: 40px;
-        width: 100px;
-        text-align: center;
-      
+.header-box-sign{
+    height: 40px;
+    line-height: 40px;
+    width: 100px;
+    text-align: center;
+    
+}
+
+.header-box div:hover{
+    color: #00b5ad;
+    cursor: pointer
     }
 
-    .header-box div:hover{
-        color: #00b5ad;
-        cursor: pointer
-     }
-
 a {
-color: black;
+    color: black;
 }
 
 .clue{

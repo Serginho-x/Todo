@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 
+import ModalRoot from './ModalRoot';
 import { signIn } from '../store/users/users-action';
 import '../styles/Sign.css'
 
@@ -80,7 +81,7 @@ class SignIn extends React.Component {
                         <div className="clue">Forgot Password?</div>   
                     </Link>                        
                 </div>    
-              
+                <ModalRoot />  
             </div>
         </React.Fragment>
         )
