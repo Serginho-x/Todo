@@ -8,8 +8,8 @@ const logger = require('morgan');
 const bodyParser = require('body-parser')
 
 const indexRouter = require('./routes/index');
-const todosRouter = require('./routes/request-todos');
-const usersRouter = require('./routes/request-users');
+const todosRouter = require('./routes/todos');
+const accountsRouter = require('./routes/accounts');
 
 const app = express();
 app.use(cors());
@@ -27,8 +27,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/todos',  todosRouter);
-app.use('/api/users', usersRouter);
+app.use('/api',  todosRouter);
+app.use('/api', accountsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

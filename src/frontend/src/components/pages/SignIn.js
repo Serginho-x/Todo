@@ -37,7 +37,7 @@ class SignIn extends React.Component {
 
     render(){
         return(
-            <React.Fragment>
+            <>
             <div className="header-box">
                 <Link to="/sign-in"> 
                     <div className="header-box-sign" type="button">Sign in</div>
@@ -83,7 +83,7 @@ class SignIn extends React.Component {
                 </div>    
                 {/* <ModalRoot />   */}
             </div>
-        </React.Fragment>
+        </>
         )
     } 
 }

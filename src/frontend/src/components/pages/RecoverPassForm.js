@@ -6,7 +6,7 @@ import './Sign.css'
 class RecoverPassForm extends React.Component { 
     render(){
         return(
-            <React.Fragment>
+            <>
             <div className="header-box">
                 <Link to="/sign-in"> 
                     <div className="header-box-sign" type="button">Sign in</div>
@@ -37,7 +37,7 @@ class RecoverPassForm extends React.Component {
                 </div>    
               
             </div>
-        </React.Fragment>
+        </>
         )
     } 
 }

@@ -6,8 +6,7 @@ import SignUp from './components/pages/SignUp';
 import PrivateRoute from './PrivateRouter';
 import RecoverPassForm from './components/pages/RecoverPassForm';
 
-import createHistory from 'history/createBrowserHistory'
-const history = createHistory()
+import history from './history'
 
 const Routers = () => {
   return (

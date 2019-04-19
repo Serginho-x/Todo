@@ -13,9 +13,9 @@ const LOGOUT = 'LOGOUT'
 export const signUp = (form) => {
     return async (dispatch) => {
         await dispatch(request( form.email ));
-        const response = await axios.post(`http://localhost:4000/api/users/register/`, {form});
-        if (response.status !== 401){          
-                dispatch(success(response));
+        const response = await axios.post(`http://localhost:4000/api/accounts/register/`, {form});
+        if (response.status !== 401){  
+                dispatch(success(response));               
                 history.push('/');
             } else {   
                 dispatch(showModal({
@@ -36,7 +36,7 @@ export const signUp = (form) => {
 export const signIn = (email, password) => {
     return async (dispatch) => {
         await dispatch(request( email ));
-        const response = await axios.put(`http://localhost:4000/api/users/login/`, {email, password});
+        const response = await axios.post(`http://localhost:4000/api/accounts/login/`, {email, password});
 
         if (response.status !== 401){
                 localStorage.setItem('user', JSON.stringify(response))
