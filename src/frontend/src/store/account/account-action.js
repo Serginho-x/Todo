@@ -33,14 +33,14 @@ export const signUp = (form) => {
     function failure(error) { return { type: REGISTER_FAILURE, error } }
 }   
 
-export const signIn = (email, password) => {
+export const signIn = ({email, password}) => {
     return async (dispatch) => {
         await dispatch(request( email ));
         const response = await axios.post(`http://localhost:4000/api/accounts/login/`, {email, password});
 
         if (response.status !== 401){
-                localStorage.setItem('user', JSON.stringify(response))
-                dispatch(success(response));
+                localStorage.setItem('user', JSON.stringify(response.data))
+                dispatch(success(response.data));
                 history.push('/');
             } else { 
                 dispatch(showModal({

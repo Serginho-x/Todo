@@ -3,10 +3,10 @@ import axios from 'axios';
 const todolistUrl = 'http://localhost:4000/api/todos';  // URL to todolist
 
 axios.interceptors.request.use(function (config) {
-  const token = localStorage.getItem('Token')
+  const token = localStorage.getItem('user')
   config.headers.Authorization =  token
   return config
-}) 
+})
 
 const FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS'
 export const fetchAllTodos = () => { 
