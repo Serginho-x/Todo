@@ -1,7 +1,7 @@
 const jwt = require ('jsonwebtoken')
 
 const checkAuth = (request, response, next) => {
-    const token = request.headers['authorization']
+    const token = request.headers['authorization']    
     if(!token) {
         console.log('Token is not provided')
         response.status(401).json({ok: false, message: 'Token is not provided'})
@@ -11,7 +11,7 @@ const checkAuth = (request, response, next) => {
             console.log('Invalid token')
             response.status(401).json({ok: false, message: 'Invalid token'})
         } else {
-            request.email = decoded.email
+            request.userId = decoded.userId
             next()
             }
         })

@@ -1,14 +1,12 @@
-const jwtDecode = require('jwt-decode');
 const Todo = require('../models/Todo');
 
 const getAllTodos = async (req, res) => {
-   const todos = await Todo.find({});
+   const todos = await Todo.find({userId: req.userId});
     return res.json(todos);    
 }
 
 const addTodo = async (req, res) => {
-    const userId = jwtDecode(req.body.token).userId;
-    const todoData = { text: req.body.text, userId };
+    const todoData = { text: req.body.text, userId: req.userId };
     const todo = await new Todo(todoData).save();
      return res.status(200).json(todo); 
 }

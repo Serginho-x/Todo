@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import * as actions from '../../store/todos/todos-actions';
@@ -8,7 +8,7 @@ import { logout } from '../../store/account/account-action';
 import { getVisibleTodos } from '../../store/todos/selectors';
 import TodoList from '../todoList/TodoList';
 import './Main.css';
-import './Sign.css'
+import './Sign.css';
 
 class Main extends React.Component {  
   static propTypes = {

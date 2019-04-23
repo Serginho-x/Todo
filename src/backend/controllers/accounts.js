@@ -14,10 +14,14 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const account = await Account.findOne({ email : req.body.email});
-    const isValid = bcrypt.compareSync(req.body.password, account.password);
-    if (account && isValid){      
-      const token = jwt.sign({ userId: account.id }, 'Vice', { expiresIn: '1h' } );      
-        return res.status(200).json(token);
+    if (account){  
+      const isValid = bcrypt.compareSync(req.body.password, account.password);
+      if (account && isValid){      
+        const token = jwt.sign({ userId: account.id }, 'Vice', { expiresIn: '1h' } );      
+          return res.status(200).json(token);
+      } else {
+        return res.status(401).json({ message: 'User doesn`t exist or incorrect password' });
+      }
     } else {
       return res.status(401).json({ message: 'User doesn`t exist or incorrect password' });
     }

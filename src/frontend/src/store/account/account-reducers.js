@@ -1,4 +1,4 @@
-let user = JSON.parse(localStorage.getItem('user'));
+let user = localStorage.getItem('token');
 
 const initialState = user ? { loggedIn: true, user } : {};
 

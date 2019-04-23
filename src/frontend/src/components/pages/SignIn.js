@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import ValidSignIn from '../validation/validSignIn'
 import { signIn } from '../../store/account/account-action';
+import ModalAlert from '../modals/ModalAlert'
 import './Sign.css'
 
 class SignIn extends React.Component {  
@@ -21,6 +22,7 @@ class SignIn extends React.Component {
             >
                 {({ errors, touched, handleChange, handleSubmit }) => (
                     <>
+                    <ModalAlert />
                     <div className="header-box">
                         <Link to="/sign-in"> 
                             <div className="header-box-sign" type="button">Sign in</div>
@@ -67,8 +69,8 @@ class SignIn extends React.Component {
                         </div>    
                     </div>
                 </>
-            )}
-        </Formik>            
+            )}            
+        </Formik>  
       )
   } 
 }
