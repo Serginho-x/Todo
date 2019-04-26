@@ -6,7 +6,7 @@ import { Formik, Field, Form } from 'formik';
 import ValidSignIn from '../validation/validSignIn'
 import { signIn } from '../../store/account/account-action';
 import ModalAlert from '../modals/ModalAlert'
-import './Sign.css'
+import '../styles/Sign.css'
 
 class SignIn extends React.Component {  
    

@@ -16,7 +16,7 @@ export const fetchAllTodos = () => {
       dispatch(success(response.data));
     } 
     catch(error) {
-      console.log(Object.keys(error), error.message); 
+      console.log(error.message); 
     }
   }       
   function success (data){
@@ -30,12 +30,11 @@ const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
 export const addTodo = text => {
   return async (dispatch) => {
     try {
-      var token = window.localStorage.getItem('token');
-      const response = await axios.post(`${todolistUrl}`, {text, token});
+      const response = await axios.post(`${todolistUrl}`, {text});
       dispatch(success(response.data));
     } 
     catch(error){
-      console.log(Object.keys(error), error.message); 
+      console.log(error.message); 
     }
   }
   function success (data){
@@ -53,7 +52,7 @@ export const editTodo = (id, text) => {
       dispatch(success(response.data));
     }
     catch(error){
-      console.log(Object.keys(error), error.message); 
+      console.log(error.message); 
     }    
   }
   function success(data){
@@ -71,7 +70,7 @@ export const deleteTodo = (id) => {
       dispatch(success(id))
     }
     catch(error){
-      console.log(Object.keys(error), error.message); 
+      console.log(error.message); 
     }
   }
   function success(id){
@@ -89,7 +88,7 @@ export const toggleSwitch = (id, done) => {
       dispatch(success(response.data))
     }
     catch(error){
-      console.log(Object.keys(error), error.message); 
+      console.log(error.message); 
     }
   }
   function success(data){
@@ -108,7 +107,7 @@ export const searchTodo = text => {
     const todoList = response.data.filter((todo) => todo.text.toLowerCase().includes(text.toLowerCase()));
       dispatch(success (todoList))
     } catch (error) {
-      console.log(Object.keys(error), error.message); 
+      console.log(error.message); 
     }
   }
   function success(todoList){

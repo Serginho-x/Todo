@@ -1,32 +1,28 @@
-let user = localStorage.getItem('token');
-
-const initialState = user ? { loggedIn: true, user } : {};
-
-export default function Accounts(state = initialState, action) {
+export default function Accounts(state = {}, action) {
   switch (action.type) {
     case 'REGISTER_REQUEST':
-      return {
-        user: action.user
-      };
+      return {};
     case 'REGISTER_SUCCESS':
-      return {
-        user: action.user
-      };
+      return {};
     case 'REGISTER_FAILURE':
       return {};
     case 'LOGIN_REQUEST':
-      return {
-        ...state,
-        loggingIn: true,
-        user: action.user
-      };
+      return {};
     case 'LOGIN_SUCCESS':
-      return {
-        ...state,
-        loggedIn: true,
-        user: action.user
-      };
+      return {};
     case 'LOGIN_FAILURE':
+      return {};
+    case 'RECOVER_PASS_REQUEST':
+      return {};
+    case 'RECOVER_PASS_SUCCESS':
+      return {};
+    case 'RECOVER_PASS_FAILURE':
+      return {};
+    case 'CHANGE_PASS_REQUEST':
+      return {};
+    case 'CHANGE_PASS_SUCCESS':
+      return {};
+    case 'CHANGE_PASS_FAILURE':
       return {};
     case 'LOGOUT':
       return {};

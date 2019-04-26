@@ -24,6 +24,18 @@ const accountSchema = new Schema({
 		type: Schema.Types.String,
 		required: true
 	},
+	confirmed: {
+		type: Schema.Types.Boolean,
+		default: false,
+	},
+	reset_password_token: {
+		type: Schema.Types.String,
+		default: ''
+	},
+	reset_password_expires: {
+		type: Schema.Types.Date,
+		default: null
+  }
 });
 
 accountSchema.pre('save', async function(next)  {

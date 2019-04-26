@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { Formik, Field, Form } from 'formik';
+
 import ValidSignUp from '../validation/validSignUp'
 import { signUp } from '../../store/account/account-action';
 import ModalAlert from '../modals/ModalAlert'
-import './Sign.css'
+import '../styles/Sign.css'
 
 class SignUp extends React.Component {  
-
     render(){
         return(         
             <Formik

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import './TodoList.css';
+import '../styles/TodoList.css';
 
 class TodoForm extends React.Component {
   static propTypes = {
@@ -9,10 +9,10 @@ class TodoForm extends React.Component {
       done: PropTypes.bool.isRequired
     }
 
-   state = {
-        isEdit: true,
-        value: this.props.text
-      }; 
+  state = {
+      isEdit: true,
+      value: this.props.text
+    }; 
 
   handleInputChange = (event) => {
     this.setState({ value: event.target.value })

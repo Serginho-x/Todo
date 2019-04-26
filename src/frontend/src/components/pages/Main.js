@@ -7,8 +7,8 @@ import * as actions from '../../store/todos/todos-actions';
 import { logout } from '../../store/account/account-action';
 import { getVisibleTodos } from '../../store/todos/selectors';
 import TodoList from '../todoList/TodoList';
-import './Main.css';
-import './Sign.css';
+import '../styles/Main.css';
+import '../styles/Sign.css';
 
 class Main extends React.Component {  
   static propTypes = {
