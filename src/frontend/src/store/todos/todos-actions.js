@@ -1,14 +1,8 @@
-import axios from 'axios';
+import axios from '../../helpers/axios.interceptor';
+import type from './types'
 
 const todolistUrl = 'http://localhost:4000/api/todos';  // URL to todolist
 
-axios.interceptors.request.use(function (config) {
-  const token = localStorage.getItem('token')  
-  config.headers.Authorization =  token;
-  return config
-})
-
-const FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS'
 export const fetchAllTodos = () => { 
   return async (dispatch) => {
     try {
@@ -21,12 +15,11 @@ export const fetchAllTodos = () => {
   }       
   function success (data){
     return {
-      type: FETCH_TODOS_SUCCESS, 
+      type: type.FETCH_TODOS_SUCCESS, 
       payload: { data }
     }}
 };
 
-const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
 export const addTodo = text => {
   return async (dispatch) => {
     try {
@@ -39,12 +32,11 @@ export const addTodo = text => {
   }
   function success (data){
     return {
-      type: ADD_TODO_SUCCESS,
+      type: type.ADD_TODO_SUCCESS,
       payload: { data }
     }}
 };
 
-const EDIT_TODO = 'EDIT_TODO'
 export const editTodo = (id, text) => {
   return async (dispatch) => {
     try {
@@ -57,12 +49,11 @@ export const editTodo = (id, text) => {
   }
   function success(data){
     return {
-      type: EDIT_TODO,
+      type: type.EDIT_TODO,
       payload: { data }
     }}
 };
 
-const DELETE_TODO = 'DELETE_TODO'
 export const deleteTodo = (id) => {
   return async (dispatch) => {
     try {
@@ -75,12 +66,11 @@ export const deleteTodo = (id) => {
   }
   function success(id){
     return {
-      type: DELETE_TODO,
+      type: type.DELETE_TODO,
       payload: { id }
     }}
 };
 
-const TOGGLE_SWITCH = 'TOGGLE_SWITCH'
 export const toggleSwitch = (id, done) => {
   return async (dispatch) => {
     try {
@@ -93,13 +83,11 @@ export const toggleSwitch = (id, done) => {
   }
   function success(data){
     return {
-      type: TOGGLE_SWITCH,
+      type: type.TOGGLE_SWITCH,
       payload: { data }
     }}
 };
 
-
-const SEARCH_TODOS_SUCCESS = 'SEARCH_TODOS_SUCCESS'
 export const searchTodo = text => {
   return async (dispatch) => {
     try {
@@ -112,15 +100,14 @@ export const searchTodo = text => {
   }
   function success(todoList){
     return {
-      type: SEARCH_TODOS_SUCCESS,
+      type: type.SEARCH_TODOS_SUCCESS,
       payload: { todoList }
     }}
 }
 
-const FILTER_TODO = 'FILTER_TODO'
 export const filterTodos = filterType => {
   return {
-    type: FILTER_TODO,
+    type: type.FILTER_TODO,
     payload: filterType    
   }
 }

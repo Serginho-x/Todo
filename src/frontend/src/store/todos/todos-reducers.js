@@ -1,3 +1,5 @@
+import type from './types'
+
 const initialState = {
     todoList: [],
     filter: 'All'
@@ -5,12 +7,12 @@ const initialState = {
   
 export default function Todos(state=initialState, action){    
     switch(action.type){
-        case 'FETCH_TODOS_SUCCESS': {                     
+        case type.FETCH_TODOS_SUCCESS: {                     
             return {
                 ...state,
                 todoList:  action.payload.data
             }}
-        case 'ADD_TODO_SUCCESS': {
+        case type.ADD_TODO_SUCCESS: {
             const payload = action.payload.data;
             return { 
                 ...state,
@@ -21,7 +23,7 @@ export default function Todos(state=initialState, action){
                           userId: payload.userId
                         }]
             }}  
-        case 'EDIT_TODO': {
+        case type.EDIT_TODO: {
             const payload = action.payload.data;
             const todoList = state.todoList.map(todo =>
             todo._id === payload._id ? { ...todo, text: payload.text } : todo)
@@ -29,14 +31,14 @@ export default function Todos(state=initialState, action){
                 ...state,
                 todoList
             }}
-        case 'DELETE_TODO': {
+        case type.DELETE_TODO: {
             const todoList = state.todoList.filter(todo => 
             todo._id !== action.payload.id )
             return {
                 ...state,
                 todoList
             }}
-        case 'TOGGLE_SWITCH': {
+        case type.TOGGLE_SWITCH: {
             const payload = action.payload.data;
             const todoList = state.todoList.map(todo =>
             todo._id === payload._id ? { ...todo, done: payload.done } : todo)
@@ -44,13 +46,13 @@ export default function Todos(state=initialState, action){
                 ...state,
                 todoList
             }}
-        case 'SEARCH_TODOS_SUCCESS': {
+        case type.SEARCH_TODOS_SUCCESS: {
             return {
               ...state,
               todoList:  action.payload.todoList
             }      
         }
-        case 'FILTER_TODO': {
+        case type.FILTER_TODO: {
             return {
               ...state,
               filter:  action.payload.filter

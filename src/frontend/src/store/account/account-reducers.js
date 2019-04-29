@@ -1,30 +1,31 @@
+import type from './types'
 export default function Accounts(state = {}, action) {
   switch (action.type) {
-    case 'REGISTER_REQUEST':
+    case type.REGISTER_REQUEST:
       return {};
-    case 'REGISTER_SUCCESS':
+    case type.REGISTER_SUCCESS:
       return {};
-    case 'REGISTER_FAILURE':
+    case type.REGISTER_FAILURE:
       return {};
-    case 'LOGIN_REQUEST':
+    case type.LOGIN_REQUEST:
       return {};
-    case 'LOGIN_SUCCESS':
+    case type.LOGIN_SUCCESS:
       return {};
-    case 'LOGIN_FAILURE':
+    case type.LOGIN_FAILURE:
       return {};
-    case 'RECOVER_PASS_REQUEST':
+    case type.RECOVER_PASS_REQUEST:
       return {};
-    case 'RECOVER_PASS_SUCCESS':
+    case type.RECOVER_PASS_SUCCESS:
       return {};
-    case 'RECOVER_PASS_FAILURE':
+    case type.RECOVER_PASS_FAILURE:
       return {};
-    case 'CHANGE_PASS_REQUEST':
+    case type.CHANGE_PASS_REQUEST:
       return {};
-    case 'CHANGE_PASS_SUCCESS':
+    case type.CHANGE_PASS_SUCCESS:
       return {};
-    case 'CHANGE_PASS_FAILURE':
+    case type.CHANGE_PASS_FAILURE:
       return {};
-    case 'LOGOUT':
+    case type.LOGOUT:
       return {};
     default:
       return state

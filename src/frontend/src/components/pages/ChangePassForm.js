@@ -12,9 +12,9 @@ class ChangePassForm extends React.Component {
     state = {
         token: ''
     } 
-    async componentDidMount() {
-        const {pathname} = this.props.location;
-        await this.setState({ token: pathname.slice(pathname.indexOf("/", 1) + 1) });
+    componentDidMount() {
+       const {pathname} = this.props.location;
+       this.setState({ token: pathname.slice(pathname.indexOf("/", 1) + 1) });
     }   
     render(){
         return(

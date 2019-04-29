@@ -7,13 +7,13 @@ export const showModal = ( modalProps ) => {
             type: SHOW_MODAL,
             modalProps,
         });
-  }
+    }
 }
   
-  export const hideModal = () => { 
+export const hideModal = () => { 
     return dispatch => {
         dispatch({
            type: HIDE_MODAL
         });
-  }
+    }
 }

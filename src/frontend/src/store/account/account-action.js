@@ -1,20 +1,7 @@
 import {showModal, hideModal} from '../modals/modals-actions';
 import axios from 'axios';
 import history from '../../history'
-
-const REGISTER_REQUEST = 'REGISTER_REQUEST';
-const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-const REGISTER_FAILURE = 'REGISTER_FAILURE';
-const LOGIN_REQUEST = 'LOGIN_REQUEST';
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-const LOGIN_FAILURE = 'LOGIN_FAILURE';
-const LOGOUT = 'LOGOUT';
-const RECOVER_PASS_REQUEST = 'RECOVER_PASS_REQUEST';
-const RECOVER_PASS_SUCCESS = 'RECOVER_PASS_SUCCESS';
-const RECOVER_PASS_FAILURE = 'RECOVER_PASS_FAILURE';
-const CHANGE_PASS_REQUEST = 'CHANGE_PASS_REQUEST';
-const CHANGE_PASS_SUCCESS = 'CHANGE_PASS_SUCCESS';
-const CHANGE_PASS_FAILURE = 'CHANGE_PASS_FAILURE';
+import type from './types'
 
 export const signUp = (form) => {
     return async (dispatch) => {
@@ -40,9 +27,9 @@ export const signUp = (form) => {
             dispatch(failure());
         }        
     };
-    function request() { return { type: REGISTER_REQUEST } }
-    function success() { return { type: REGISTER_SUCCESS } }
-    function failure() { return { type: REGISTER_FAILURE } }
+    function request() { return { type: type.REGISTER_REQUEST } }
+    function success() { return { type: type.REGISTER_SUCCESS } }
+    function failure() { return { type: type.REGISTER_FAILURE } }
 }  
 
 export const signIn = ({email, password}) => {
@@ -64,9 +51,9 @@ export const signIn = ({email, password}) => {
             dispatch(failure());
         }        
     };
-    function request() { return { type: LOGIN_REQUEST } }
-    function success() { return { type: LOGIN_SUCCESS } }
-    function failure() { return { type: LOGIN_FAILURE } }
+    function request() { return { type: type.LOGIN_REQUEST } }
+    function success() { return { type: type.LOGIN_SUCCESS } }
+    function failure() { return { type: type.LOGIN_FAILURE } }
 }
 
 export const recoverPass = ({email}) => {
@@ -93,16 +80,16 @@ export const recoverPass = ({email}) => {
             dispatch(failure());
         }
     }
-    function request() { return { type: RECOVER_PASS_REQUEST } }
-    function success() { return { type: RECOVER_PASS_SUCCESS } }
-    function failure() { return { type: RECOVER_PASS_FAILURE } }
+    function request() { return { type: type.RECOVER_PASS_REQUEST } }
+    function success() { return { type: type.RECOVER_PASS_SUCCESS } }
+    function failure() { return { type: type.RECOVER_PASS_FAILURE } }
 }
 
 export const changePass = ({password, confirmedPassword, token}) => {
     return async(dispatch) => {
         await dispatch(request(password, confirmedPassword, token));
         try {
-            await axios.post(`http://localhost:4000/api/accounts/changePass/`, {password, confirmedPassword, token});           
+            await axios.post(`http://localhost:4000/api/accounts/changePass/`, {password, confirmedPassword, token});  
             dispatch(success());  
             history.push('/');
         }
@@ -116,12 +103,12 @@ export const changePass = ({password, confirmedPassword, token}) => {
             dispatch(failure());
         }
     }
-    function request() { return { type: CHANGE_PASS_REQUEST } }
-    function success() { return { type: CHANGE_PASS_SUCCESS } }
-    function failure() { return { type: CHANGE_PASS_FAILURE } }
+    function request() { return { type: type.CHANGE_PASS_REQUEST } }
+    function success() { return { type: type.CHANGE_PASS_SUCCESS } }
+    function failure() { return { type: type.CHANGE_PASS_FAILURE } }
 }
 
 export const logout = () => {
     localStorage.removeItem('token');
-    return { type: LOGOUT };
+    return { type: type.LOGOUT };
 }

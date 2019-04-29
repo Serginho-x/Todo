@@ -17,9 +17,9 @@ const register = async (req, res) => {
     }, function (err) {
       if(err) {console.log(err)};
     })    
-      return res.status(200).json(user) 
+      return res.status(200).json(user);
   } else {
-    return res.status(401).json({ message: 'User exist' })
+    return res.status(401).json({ message: 'User exist' });
   }
 }
 
@@ -66,7 +66,7 @@ const recoverPass = async (req, res) => {
     }, function (err) {
       if(err) {console.log(err)};
     })    
-      return res.status(200).json('done') 
+      return res.status(200).json('done');
   } else {
     return res.status(401).json({ message: 'User doesn`t exist' });
   }
@@ -83,9 +83,11 @@ const changePass = async (req, res) => {
     if (req.body.password === req.body.confirmedPassword) {
       const salt =	await bcrypt.genSalt(12);
       const hash = await bcrypt.hash(req.body.password, salt).catch((err) => console.log(err));
-      await Account.findByIdAndUpdate(account.id, {password : hash,
+      await Account.findByIdAndUpdate(account.id, {
+        password : hash,
         reset_password_token : '',
-        reset_password_expires : null }, {new: true});      
+        reset_password_expires : null 
+      }, {new: true});      
       return res.status(200).json(account) 
     } else {
     return res.status(401).json({ message: 'Passwords aren`t the same' });

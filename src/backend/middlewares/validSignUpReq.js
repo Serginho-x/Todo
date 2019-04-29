@@ -10,7 +10,7 @@ let schema = yup.object().shape({
    
 const validSignUpReq = async (req, res, next) =>  {
     const request = await schema.isValid(req.body);
-    request ? next () : res.status(401).json({ message: 'Incorrect request data'}) 
+    request ? next () : res.status(401).json({ message: 'Incorrect request data'});
   };
    
 module.exports = validSignUpReq

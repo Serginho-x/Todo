@@ -1,9 +1,9 @@
-const jwt = require ('jsonwebtoken')
+const jwt = require ('jsonwebtoken');
 
 const checkAuth = (request, response, next) => {
     const token = request.headers['authorization']    
     if(!token) {
-        console.log('Token is not provided')
+        console.log('Token is not provided');
         response.status(401).json({ok: false, message: 'Token is not provided'})
     } else {
         jwt.verify(token, 'Vice', (err, decoded) => {

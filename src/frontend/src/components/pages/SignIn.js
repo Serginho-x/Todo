@@ -8,8 +8,7 @@ import { signIn } from '../../store/account/account-action';
 import ModalAlert from '../modals/ModalAlert'
 import '../styles/Sign.css'
 
-class SignIn extends React.Component {  
-   
+class SignIn extends React.Component {     
     render(){
         return(
             <Formik
