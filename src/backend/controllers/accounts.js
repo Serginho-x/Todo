@@ -41,14 +41,9 @@ const login = async (req, res) => {
   } 
 
 const confirmation = async (req, res) => {
-  try {
     const user = jwt.verify(req.params.token, 'EMAIL_SECRET');
-    await Account.findByIdAndUpdate(user.id, { confirmed: true }, {new: true});
-  }
-  catch (e) {
-    res.send('error');
-  }
-  return res.redirect('http://localhost:3000/sign-in');
+    await Account.findByIdAndUpdate(user.id, { confirmed: true }, {new: true}); 
+     return res.redirect('http://localhost:3000/sign-in');
 }
 
 const recoverPass = async (req, res) => { 
@@ -56,7 +51,7 @@ const recoverPass = async (req, res) => {
   const salt = await bcrypt.genSalt(12);
   const token = await bcrypt.hash(account.email, salt).catch((err) => next(err));
   await Account.findByIdAndUpdate( account._id, { reset_password_token: token,  reset_password_expires: Date.now() + 86400000 }, {new: true});
-  const url = `http://localhost:3000/change-password/${token}`;   
+  const url = `http://localhost:3000/change-password?token=${token}`;   
   if(account){
     sendmail({
       from: 'Todo 👻"<todo@example.com>',
@@ -81,7 +76,7 @@ const changePass = async (req, res) => {
   })
   if(account){ 
     if (req.body.password === req.body.confirmedPassword) {
-      const salt =	await bcrypt.genSalt(12);
+      const salt = await bcrypt.genSalt(12);
       const hash = await bcrypt.hash(req.body.password, salt).catch((err) => console.log(err));
       await Account.findByIdAndUpdate(account.id, {
         password : hash,

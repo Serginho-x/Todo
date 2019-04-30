@@ -13,9 +13,10 @@ class ChangePassForm extends React.Component {
         token: ''
     } 
     componentDidMount() {
-       const {pathname} = this.props.location;
-       this.setState({ token: pathname.slice(pathname.indexOf("/", 1) + 1) });
+        const token = new URLSearchParams(this.props.location.search).get('token');
+        this.setState({ token: token });
     }   
+
     render(){
         return(
             <Formik
