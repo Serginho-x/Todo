@@ -1,19 +1,15 @@
-.input {
-    width: 600px
-}
-
-.App{
+.body {
     display: grid;
-    align-items: center;
     justify-content: center;
     text-align: center;
 }
 
-.Title{
+.title {
+    width: 600px;
     font: 40pt sans-serif;
 }
 
-.search_panel{
+.search-panel{
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;

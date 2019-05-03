@@ -1,11 +1,9 @@
 import {showModal, hideModal} from '../modals/modals-actions';
 import axios from 'axios';
-import history from '../../history'
-import type from './types'
+import {history} from '../../App'
 
 export const signUp = (form) => {
-    return async (dispatch) => {
-        await dispatch(request());
+    return async (dispatch) => {       
         try {
             await axios.post(`http://localhost:4000/api/accounts/register/`, form);
             dispatch(showModal({
@@ -13,8 +11,7 @@ export const signUp = (form) => {
                 title: 'Done',
                 message: 'We send you message on e-mail',
                 closeModal: () => dispatch(hideModal())
-            }))   
-            dispatch(success());               
+            }))                             
             history.push('/');
         }
         catch(error) {   
@@ -23,23 +20,24 @@ export const signUp = (form) => {
                 title: 'Alert',
                 message: error.response.data.message,
                 closeModal: () => dispatch(hideModal())
-            }))     
-            dispatch(failure());
+            }))
         }        
-    };
-    function request() { return { type: type.REGISTER_REQUEST } }
-    function success() { return { type: type.REGISTER_SUCCESS } }
-    function failure() { return { type: type.REGISTER_FAILURE } }
+    };  
 }  
 
+export const ADD_TOKEN = 'ADD_TOKEN'
 export const signIn = ({email, password}) => {
     return async (dispatch) => {
-        await dispatch(request());
         try {
             const response = await axios.post(`http://localhost:4000/api/accounts/login/`, {email, password});            
-            localStorage.setItem('token', response.data)
-            dispatch(success());
+            localStorage.setItem('token', response.data);
             history.push('/');
+            return {
+                type: ADD_TOKEN,
+                payload: {
+                    token: response.data
+                }
+            }
         } 
         catch(error) {             
             dispatch(showModal({
@@ -47,28 +45,21 @@ export const signIn = ({email, password}) => {
                 title: 'Alert',
                 message: error.response.data.message,
                 closeModal: () => dispatch(hideModal())
-            }))               
-            dispatch(failure());
+            }))
         }        
-    };
-    function request() { return { type: type.LOGIN_REQUEST } }
-    function success() { return { type: type.LOGIN_SUCCESS } }
-    function failure() { return { type: type.LOGIN_FAILURE } }
+    };   
 }
 
 export const recoverPass = ({email}) => {
     return async(dispatch) => {
-        await dispatch(request());
         try {
-            const response = await axios.post(`http://localhost:4000/api/accounts/recoverPass/`, {email});
-            const recoverToken = response.data;
+            await axios.post(`http://localhost:4000/api/accounts/recoverPass/`, {email});
             dispatch(showModal({
                 open: true,
                 title: 'OK',
                 message: 'Check your e-mail for message with instructions',
                 closeModal: () => dispatch(hideModal())
-            }))   
-            dispatch(success(recoverToken));  
+            })) 
         }
         catch(error) {
             dispatch(showModal({
@@ -76,21 +67,15 @@ export const recoverPass = ({email}) => {
                 title: 'Alert',
                 message: error.response.data.message,
                 closeModal: () => dispatch(hideModal())
-            }))     
-            dispatch(failure());
+            })) 
         }
     }
-    function request() { return { type: type.RECOVER_PASS_REQUEST } }
-    function success() { return { type: type.RECOVER_PASS_SUCCESS } }
-    function failure() { return { type: type.RECOVER_PASS_FAILURE } }
 }
 
 export const changePass = ({password, confirmedPassword, token}) => {
     return async(dispatch) => {
-        await dispatch(request(password, confirmedPassword, token));
         try {
-            await axios.post(`http://localhost:4000/api/accounts/changePass/`, {password, confirmedPassword, token});  
-            dispatch(success());  
+            await axios.post(`http://localhost:4000/api/accounts/changePass/`, {password, confirmedPassword, token}); 
             history.push('/');
         }
         catch(error) {
@@ -99,16 +84,15 @@ export const changePass = ({password, confirmedPassword, token}) => {
                 title: 'Alert',
                 message: error.response.data.message,
                 closeModal: () => dispatch(hideModal())
-            }))     
-            dispatch(failure());
+            }))
         }
     }
-    function request() { return { type: type.CHANGE_PASS_REQUEST } }
-    function success() { return { type: type.CHANGE_PASS_SUCCESS } }
-    function failure() { return { type: type.CHANGE_PASS_FAILURE } }
 }
 
+export const REMOVE_TOKEN = 'REMOVE_TOKEN'
 export const logout = () => {
     localStorage.removeItem('token');
-    return { type: type.LOGOUT };
+    return {
+        type: REMOVE_TOKEN
+    }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import TodoForm from './TodoForm'
-import '../styles/TodoList.css';
+import '../../styles/TodoList.css';
 
 class TodoList extends React.Component { 
   static propTypes = {

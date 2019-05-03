@@ -6,7 +6,7 @@ import { Formik, Field, Form } from 'formik';
 import ValidChangePass from '../validation/validChangePass';
 import { changePass } from '../../store/account/account-action';
 import ModalAlert from '../modals/ModalAlert'
-import '../styles/Sign.css'
+import '../../styles/Sign.css'
 
 class ChangePassForm extends React.Component {  
     state = {
@@ -23,11 +23,10 @@ class ChangePassForm extends React.Component {
                 enableReinitialize
                 initialValues={{ 
                         password: '',
-                        confirmedPassword: '' ,
-                        token: this.state.token,             
+                        confirmedPassword: ''
                 }}
                 validationSchema={ValidChangePass}
-                onSubmit={(password, confirmedPassword, token) => {this.props.changePass(password, confirmedPassword, token)}}
+                onSubmit={(password, confirmedPassword) => {this.props.changePass(password, confirmedPassword, this.state.token)}}
             >
                 {({ errors, touched, handleChange, handleSubmit }) => (
                     <>    
@@ -49,7 +48,7 @@ class ChangePassForm extends React.Component {
                                         <div className="recover-title">
                                             Please enter your new password and confirm it.
                                         </div>
-                                        <div className={"field " +( errors.password && touched.password ? "error" : null)}>
+                                        <div className={"field " + (errors.password && touched.password ? "error" : null)}>
                                             <label>Password</label>
                                             <div className="ui left icon input field">
                                                 <Field name="password"
@@ -62,7 +61,7 @@ class ChangePassForm extends React.Component {
                                             </div>
                                             {errors.password && touched.password ? ( <div>{errors.password}</div> ) : null}
                                         </div>         
-                                        <div className={"field " +( errors.password && touched.password ? "error" : null)}>
+                                        <div className={"field " + (errors.password && touched.password ? "error" : null)}>
                                             <label>Confirm Password</label>
                                             <div className="ui left icon input field">
                                                 <Field name="confirmedPassword"

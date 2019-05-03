@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
-import '../styles/ModalAlert.css';
+import '../../styles/ModalAlert.css';
 
 const modalStyles = {
   content: {
@@ -23,8 +23,7 @@ class ModalAlert extends React.Component {
           style={ modalStyles }
         >
           <div className="modal">
-            <div className="modal_inner">
-            <label className="modal_close"></label>
+            <div className="modal-inner">
               <h2>{modal.modalProps.title}</h2>
               <p>{modal.modalProps.message}</p>
               <button className="ui button" onClick={modal.modalProps.closeModal}>OK</button>              

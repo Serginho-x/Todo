@@ -6,7 +6,7 @@ import { Formik, Field, Form } from 'formik';
 import ValidRecoverPass from '../validation/validRecoverPass'
 import { recoverPass } from '../../store/account/account-action';
 import ModalAlert from '../modals/ModalAlert'
-import '../styles/Sign.css'
+import '../../styles/Sign.css'
 
 class RecoverPassForm extends React.Component { 
     render(){
@@ -38,7 +38,7 @@ class RecoverPassForm extends React.Component {
                                         <div className="recover-title">
                                             Please enter your e-mail address and we’ll send your password.
                                         </div>
-                                        <div className={"field " +(errors.email && touched.email ? "error" : null)} >
+                                        <div className={"field " + (errors.email && touched.email ? "error" : null)} >
                                             <label>Email</label>
                                             <div className="ui left icon input field">
                                                 <Field  name="email"

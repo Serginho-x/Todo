@@ -6,7 +6,7 @@ import { Formik, Field, Form } from 'formik';
 import ValidSignUp from '../validation/validSignUp'
 import { signUp } from '../../store/account/account-action';
 import ModalAlert from '../modals/ModalAlert'
-import '../styles/Sign.css'
+import '../../styles/Sign.css'
 
 class SignUp extends React.Component {  
     render(){
@@ -39,10 +39,10 @@ class SignUp extends React.Component {
                                 <Form className="ui form" onSubmit={handleSubmit}>
                                     <h4 className="ui dividing header centered">Registration</h4>
                                     <div className={"field " +
-                                            ( errors.firstName && touched.firstName && errors.firstName && errors.lastName ? "error" : null)}
+                                            (errors.firstName && touched.firstName && errors.firstName && errors.lastName ? "error" : null)}
                                     >
                                         <label>Name</label>
-                                        <div className={"field " +( errors.firstName  && touched.firstName ? "error" : null)}>
+                                        <div className={"field " + (errors.firstName  && touched.firstName ? "error" : null)}>
                                             <Field  name="firstName"
                                                     type="text" 
                                                     placeholder="First Name"
@@ -50,7 +50,7 @@ class SignUp extends React.Component {
                                             />
                                         {errors.firstName && touched.firstName ? ( <div>{errors.firstName}</div> ) : null}
                                         </div>
-                                    <div className={"field " +( errors.lastName && touched.lastName ? "error" : null)}>
+                                    <div className={"field " + (errors.lastName && touched.lastName ? "error" : null)}>
                                             <Field  name="lastName"
                                                     type="text"
                                                     placeholder="Last Name"
@@ -59,7 +59,7 @@ class SignUp extends React.Component {
                                         {errors.lastName && touched.lastName ? ( <div>{errors.lastName}</div> ) : null}
                                         </div>                
                                     </div> 
-                                    <div className={"field " +( errors.nickName && touched.nickName ? "error" : null)}>
+                                    <div className={"field " + (errors.nickName && touched.nickName ? "error" : null)}>
                                         <label>Nickname</label>
                                         <div className="field">
                                             <Field  name="nickName"
@@ -71,7 +71,7 @@ class SignUp extends React.Component {
                                         {errors.nickName && touched.nickName ? ( <div>{errors.nickName}</div> ) : null}
                                         </div>
                                     </div>  
-                                    <div className={"field " +(errors.email && touched.email ? "error" : null)} >
+                                    <div className={"field " + (errors.email && touched.email ? "error" : null)} >
                                         <label>Email</label>
                                         <div className="ui left icon input field">
                                             <Field  name="email"
@@ -83,7 +83,7 @@ class SignUp extends React.Component {
                                         </div>
                                         {errors.email && touched.email ? ( <div>{errors.email}</div> ) : null}
                                     </div>                         
-                                    <div className={"field " +( errors.password && touched.password ? "error" : null)}>
+                                    <div className={"field " + (errors.password && touched.password ? "error" : null)}>
                                         <label>Password</label>
                                         <div className="field">
                                             <Field  name="password"

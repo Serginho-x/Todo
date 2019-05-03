@@ -1,0 +1,16 @@
+ .modal {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%) ;
+    min-width: 320px; 
+ }
+
+.modal-inner {
+    border: 2px solid red; 
+    background: #fff;
+    border-radius: 5px; 
+    padding: 15px 5px;
+}
+  

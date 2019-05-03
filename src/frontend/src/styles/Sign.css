@@ -8,15 +8,14 @@
     font: 14pt bold  sans-serif;
 }
 
-.header-box-sign{
+.header-box-sign {
     height: 40px;
     line-height: 40px;
     width: 100px;
-    text-align: center;
-    
+    text-align: center;    
 }
 
-.header-box div:hover{
+.header-box div:hover {
     color: #00b5ad;
     cursor: pointer
     }
@@ -25,12 +24,12 @@ a {
     color: black;
 }
 
-.clue{
+.clue {
     color: rgb(232, 91, 70);
     text-decoration: underline !important;
     cursor: pointer
 }
 
-.recover-title{
+.recover-title {
     margin-bottom: 20px;
 }

@@ -7,19 +7,12 @@ import * as actions from '../../store/todos/todos-actions';
 import { logout } from '../../store/account/account-action';
 import { getVisibleTodos } from '../../store/todos/selectors';
 import TodoList from '../todoList/TodoList';
-import '../styles/Main.css';
-import '../styles/Sign.css';
+import '../../styles/Main.css';
+import '../../styles/Sign.css';
 
 class Main extends React.Component {  
   static propTypes = {
-    todos: PropTypes.array.isRequired,
-    fetchAllTodos: PropTypes.func.isRequired,
-    addTodo: PropTypes.func.isRequired,
-    editTodo: PropTypes.func.isRequired,
-    deleteTodo: PropTypes.func.isRequired,
-    filterTodos: PropTypes.func.isRequired,
-    toggleSwitch: PropTypes.func.isRequired,
-    searchTodo: PropTypes.func.isRequired
+    todos: PropTypes.array.isRequired
   }  
 
   state = {
@@ -59,8 +52,8 @@ class Main extends React.Component {
           </Link>
         </div> 
         <div>
-          <div className="App">                       
-            <div className="Title">
+          <div className="body">                       
+            <div className="title">
                 Todo List
             </div>
             <div>
@@ -81,7 +74,7 @@ class Main extends React.Component {
               </form>
             </div>
             <div className="ui divider"></div>
-            <div className="search_panel">
+            <div className="search-panel">
               <div className="ui buttons">
                 <button className="ui button" onClick={() => this.props.filterTodos({filter: "All"})}>All</button>
                 <button className="ui button" onClick={() => this.props.filterTodos({filter: "Done"})}>Done</button>

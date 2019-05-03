@@ -6,7 +6,7 @@ import { Formik, Field, Form } from 'formik';
 import ValidSignIn from '../validation/validSignIn'
 import { signIn } from '../../store/account/account-action';
 import ModalAlert from '../modals/ModalAlert'
-import '../styles/Sign.css'
+import '../../styles/Sign.css'
 
 class SignIn extends React.Component {     
     render(){
@@ -35,7 +35,7 @@ class SignIn extends React.Component {
                         <div className="ui card six wide column centered stackable page ">                              
                             <Form className="ui form" onSubmit={handleSubmit}>
                                 <h4 className="ui dividing header centered">Authorization</h4>                        
-                                <div className={"field " +(errors.email && touched.email ? "error" : null)} >
+                                <div className={"field " + (errors.email && touched.email ? "error" : null)} >
                                     <label>Email</label>
                                     <div className="field">
                                         <Field  name="email" 
@@ -46,7 +46,7 @@ class SignIn extends React.Component {
                                         {errors.email && touched.email ? ( <div>{errors.email}</div> ) : null}
                                     </div>                         
                                 </div>                         
-                                <div className={"field " +( errors.password && touched.password ? "error" : null)}>
+                                <div className={"field " + (errors.password && touched.password ? "error" : null)}>
                                     <label>Password</label>
                                     <div className="field">
                                         <Field name="password"
