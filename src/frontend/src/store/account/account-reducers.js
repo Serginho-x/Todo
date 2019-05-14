@@ -1,4 +1,4 @@
-import * as type from './account-action';
+import * as type from './account-actions';
 
 const initialState = {
     token: null

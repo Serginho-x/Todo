@@ -6,7 +6,7 @@ export default function Modals(state = initialState, action){
   switch (action.type) {
     case 'SHOW_MODAL':
       return {
-        modalProps: action.modalProps
+        modalProps: action.payload
       }
     case 'HIDE_MODAL':
       return initialState

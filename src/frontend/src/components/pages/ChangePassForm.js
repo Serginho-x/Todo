@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
-import ValidChangePass from '../validation/validChangePass';
-import { changePass } from '../../store/account/account-action';
-import ModalAlert from '../modals/ModalAlert'
+import ValidChangePass from '../../helpers/validation/validChangePass';
+import { changePass } from '../../store/account/account-actions';
 import '../../styles/Sign.css'
 
 class ChangePassForm extends React.Component {  
@@ -13,9 +12,18 @@ class ChangePassForm extends React.Component {
         token: ''
     } 
     componentDidMount() {
-        const token = new URLSearchParams(this.props.location.search).get('token');
+        const token = new URLSearchParams(this.props.location.search).get('token');       
         this.setState({ token: token });
     }   
+
+    onSubmit = (e ) => {
+       if(e.password === e.confirmedPassword){ 
+           console.log(e.password, e.confirmedPassword)
+            this.props.changePass(e.password, this.state.token)
+        } else {
+            return   
+        }
+    }
 
     render(){
         return(
@@ -26,11 +34,10 @@ class ChangePassForm extends React.Component {
                         confirmedPassword: ''
                 }}
                 validationSchema={ValidChangePass}
-                onSubmit={(password, confirmedPassword) => {this.props.changePass(password, confirmedPassword, this.state.token)}}
+                onSubmit={(event) => this.onSubmit(event)}
             >
                 {({ errors, touched, handleChange, handleSubmit }) => (
                     <>    
-                     <ModalAlert />     
                         <div className="header-box">
                             <Link to="/sign-in"> 
                                 <div className="header-box-sign" type="button">Sign in</div>

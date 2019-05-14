@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
-import ValidSignUp from '../validation/validSignUp'
-import { signUp } from '../../store/account/account-action';
-import ModalAlert from '../modals/ModalAlert'
-import '../../styles/Sign.css'
+import ValidSignUp from '../../helpers/validation/validSignUp';
+import { signUp } from '../../store/account/account-actions';
+import '../../styles/Sign.css';
 
 class SignUp extends React.Component {  
     render(){
@@ -23,8 +22,7 @@ class SignUp extends React.Component {
                 onSubmit={form => this.props.signUp(form)}
             >
                 {({ errors, touched, handleChange, handleSubmit }) => (
-                    <>    
-                     <ModalAlert />     
+                    <>  
                         <div className="header-box">
                             <Link to="/sign-in"> 
                                 <div className="header-box-sign" type="button">Sign in</div>

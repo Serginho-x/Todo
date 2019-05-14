@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import * as actions from '../../store/todos/todos-actions';
-import { logout } from '../../store/account/account-action';
-import { getVisibleTodos } from '../../store/todos/selectors';
+import { logout } from '../../store/account/account-actions';
+import { getVisibleTodosWithSearch } from '../../store/todos/selectors';
 import TodoList from '../todoList/TodoList';
 import '../../styles/Main.css';
 import '../../styles/Sign.css';
@@ -104,7 +104,7 @@ class Main extends React.Component {
 
 const mapStateToProps = store => {
     return {
-      todos: getVisibleTodos(store.todos, store.filter)    
+      todos: getVisibleTodosWithSearch(store.todos, store.filter)    
   }
 }
 

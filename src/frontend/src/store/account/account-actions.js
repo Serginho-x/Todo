@@ -72,10 +72,11 @@ export const recoverPass = ({email}) => {
     }
 }
 
-export const changePass = ({password, confirmedPassword, token}) => {
+export const changePass = (password, token) => {
     return async(dispatch) => {
         try {
-            await axios.post(`http://localhost:4000/api/accounts/changePass/`, {password, confirmedPassword, token}); 
+            console.log(password, token)
+            await axios.post(`http://localhost:4000/api/accounts/changePass/`, {password, token}); 
             history.push('/');
         }
         catch(error) {

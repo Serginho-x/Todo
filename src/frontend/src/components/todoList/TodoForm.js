@@ -5,8 +5,7 @@ import '../../styles/TodoList.css';
 class TodoForm extends React.Component {
   static propTypes = {
       text: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      done: PropTypes.bool.isRequired
+      id: PropTypes.string.isRequired      
     }
 
   state = {
@@ -24,25 +23,25 @@ class TodoForm extends React.Component {
   }
   
   render(){
-      const {id, text, done} =this.props
+      const {id, text} =this.props
       return (
         this.state.isEdit ? 
         <>
-            <div className="ToDoList-Text">{text}</div>                     
-            <div className="ToDoList-Buttons">
-                <i className="edit icon" onClick={() => this.setState({isEdit: !this.state.isEdit})}></i>              
-                <i className="trash icon" onClick={() => done && this.props.deleteTodo(id)}></i>
-            </div> 
+          <div className="todolist-text">{text}</div>                     
+          <div className="todolist-buttons">
+              <i className="edit icon" onClick={() => this.setState({isEdit: !this.state.isEdit})}></i>              
+              <i className="trash icon" onClick={() => this.props.deleteTodo(id)}></i>
+          </div> 
         </>
         :
         <>            
-            <div className="ui mini input focus">
-                <input type="text" placeholder="Todo..." value={this.state.value} onChange={this.handleInputChange}/>  
-            </div>
-            <div className="ToDoList-Buttons">
-                <i className="check square outline icon" onClick={() => this.handleSubmit(id)}></i>               
-                <i className="trash icon" onClick={() => done && this.props.deleteTodo(id)}></i>
-            </div> 
+          <div className="ui mini input focus todolist-input">
+              <input type="text" placeholder="Todo..." value={this.state.value} onChange={this.handleInputChange}/>  
+          </div>
+          <div className="todolist-buttons">
+              <i className="check square outline icon" onClick={() => this.handleSubmit(id)}></i>               
+              <i className="trash icon" onClick={() => this.props.deleteTodo(id)}></i>
+          </div> 
         </>          
       )
   }

@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
-import ValidRecoverPass from '../validation/validRecoverPass'
-import { recoverPass } from '../../store/account/account-action';
-import ModalAlert from '../modals/ModalAlert'
-import '../../styles/Sign.css'
+import ValidRecoverPass from '../../helpers/validation/validRecoverPass';
+import { recoverPass } from '../../store/account/account-actions';
+import '../../styles/Sign.css';
 
 class RecoverPassForm extends React.Component { 
     render(){
@@ -19,8 +18,7 @@ class RecoverPassForm extends React.Component {
                 onSubmit={email => this.props.recoverPass(email)}
             >
                 {({ errors, touched, handleChange, handleSubmit }) => (
-                    <>    
-                     <ModalAlert />     
+                    <>
                         <div className="header-box">
                             <Link to="/sign-in"> 
                                 <div className="header-box-sign" type="button">Sign in</div>

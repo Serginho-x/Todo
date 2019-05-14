@@ -1,4 +1,4 @@
-.ToDoList-Item {
+.todolist-item {
     width: 600px;
     min-height: 40px;
     margin-top: 10px;
@@ -9,23 +9,27 @@
     align-items: center;
 }
 
-.ToDoList-Buttons {
+.todolist-buttons {
     margin-left: auto;
     max-width: 60px;
     min-width: 60px;
 }
 
-.ToDoList-Buttons i:hover{
+.todolist-buttons i:hover{
    color:#00b5ad;
 }
 
-.ToDoList-Checkbox{
+.todolist-checkbox{
     margin: auto 10px auto 5px;
     display: flex;
     align-items: center;
 }
 
-.ToDoList-Text{
+.todolist-input{
+    width: 500px;
+}
+
+.todolist-text{
     text-align: start;
 }
 

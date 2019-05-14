@@ -2,8 +2,9 @@ import { createSelector } from 'reselect';
 
 export const getTodos = (state) => state.todoList;
 export const getTodosFilter = (state) => state.filter;
+export const searchTodos = (state) => state.searchTodos;
 
-export const getVisibleTodos = createSelector(
+const getVisibleTodos = createSelector(
     [getTodos, getTodosFilter],
     (todoList, filters) => {
     switch (filters) {
@@ -16,3 +17,10 @@ export const getVisibleTodos = createSelector(
     }
   }
 );
+
+export const getVisibleTodosWithSearch = createSelector(
+  [ getVisibleTodos, searchTodos ],
+  (visibleTodos, keyword) => visibleTodos.filter(
+    todo => todo.text.toLowerCase().includes(keyword.toLowerCase())
+  )
+)

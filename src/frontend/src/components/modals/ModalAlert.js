@@ -22,12 +22,12 @@ class ModalAlert extends React.Component {
           ariaHideApp={false}
           style={ modalStyles }
         >
-          <div className="modal">
-            <div className="modal-inner">
+          <div className="modal">           
               <h2>{modal.modalProps.title}</h2>
               <p>{modal.modalProps.message}</p>
-              <button className="ui button" onClick={modal.modalProps.closeModal}>OK</button>              
-            </div>    
+              <button className="ui button" onClick={modal.modalProps.closeModal}>
+                OK
+              </button>
           </div>
         </Modal>
       </div>
@@ -36,7 +36,7 @@ class ModalAlert extends React.Component {
 }
 
 const mapStateToProps = store => ({
-  modal: store.modals
+   modal: store.modals
 })
 
 export default connect(mapStateToProps, null)(ModalAlert)
